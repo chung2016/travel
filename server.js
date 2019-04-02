@@ -14,7 +14,7 @@ app.use(cors());
 app.use(jwt());
 
 // api routes
-app.use("/users", require("./api/controllers/user.controller"));
+app.use("/api/v1/users", require("./api/controllers/user.controller"));
 
 // global error handler
 app.use(errorHandler);
