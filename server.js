@@ -17,6 +17,7 @@ app.use(jwt());
 
 // api routes
 app.use("/api/v1/users", require("./api/controllers/user.controller"));
+app.use("/api/v1/products", require("./api/controllers/product.controller"));
 app.get('/*', function(req, res) {
     res.sendFile(path.join(`${__dirname}/dist${distPath}/index.html`));
 });

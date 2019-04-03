@@ -27,5 +27,6 @@ mongoose.connection.on('disconnected', function() {
 mongoose.Promise = global.Promise;
 
 module.exports = {
-	User: require('../models/user.model')
+	User: require('../models/user.model'),
+	Product: require('../models/product.model')
 };
