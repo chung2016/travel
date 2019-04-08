@@ -21,6 +21,10 @@ const schema = new Schema({
 		type: String,
 		required: true
 	},
+	attractions: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Attractions',
+	}],
 	createdAt: {
 		type: Date,
 		default: Date.now

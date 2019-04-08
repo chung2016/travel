@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const productService = require('../services/product.service');
+const attractionsService = require('../services/attractions.service');
 
 router.get('/', getAll);
 router.get('/:id', getById);
@@ -11,30 +11,30 @@ router.delete('/:id', _delete);
 module.exports = router;
 
 function getAll(req, res, next) {
-  productService
+  attractionsService
     .getAll()
-    .then(products => res.json(products));
+    .then(attractions => res.json(attractions));
 }
 function getById(req, res, next) {
-  productService
+  attractionsService
     .getById(req.params.id)
-    .then(product => (product ? res.json(product) : res.sendStatus(404)))
+    .then(attractions => (attractions ? res.json(attractions) : res.sendStatus(404)))
     .catch(err => next(err));
 }
 function create(req, res, next) {
-    productService
+    attractionsService
 		.create(req.body)
-		.then((product) => res.json(product))
+		.then((attractions) => res.json(attractions))
 		.catch(err => next(err));
 }
 function update(req, res, next) {
-    productService
+    attractionsService
 		.update(req.params.id, req.body)
-		.then((product) => res.json(product))
+		.then((attractions) => res.json(attractions))
 		.catch(err => next(err));
 }
 function _delete(req, res, next) {
-    productService
+    attractionsService
 		.delete(req.params.id)
 		.then(() => res.json({}))
 		.catch(err => next(err));

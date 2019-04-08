@@ -18,12 +18,14 @@ async function getById(id) {
 async function create(param) {
   const product = new Product(param);
   await product.save();
+  return product;
 }
 async function update(id, param) {
   const product = await Product.findById(id);
   if (!product) throw 'Product not found';
   Object.assign(product, param);
   await product.save();
+  return product;
 }
 async function _delete(id) {
   await Product.findOneAndDelete(id);
