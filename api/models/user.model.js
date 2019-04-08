@@ -4,13 +4,34 @@ const bcrypt = require('bcryptjs');
 const SALT_WORK_FACTOR = 10;
 
 const schema = new Schema({
-	username: { type: String, unique: true, required: true },
-	password: { type: String, required: true },
-	createdAt: { type: Date, default: Date.now },
-	updatedAt: { type: Date, default: Date.now }
+	email: {
+		type: String,
+		required: true,
+		index: { unique: true },
+		validate: function (email) {
+			return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
+		}
+	},
+	username: {
+		type: String,
+		required: true,
+		index: { unique: true },
+	},
+	password: {
+		type: String,
+		required: true
+	},
+	createdAt: {
+		type: Date,
+		default: Date.now
+	},
+	updatedAt: {
+		type: Date,
+		default: Date.now
+	},
 });
 
-schema.pre('save', function(next) {
+schema.pre('save', function (next) {
 	if (!this.isModified('password')) return next();
 
 	if (this.password) {
@@ -20,7 +41,7 @@ schema.pre('save', function(next) {
 	next();
 });
 
-schema.methods.comparePassword = function(candidatePassword) {
+schema.methods.comparePassword = function (candidatePassword) {
 	let result = bcrypt.compareSync(candidatePassword, this.password);
 	return result;
 };
