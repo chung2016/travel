@@ -20,8 +20,8 @@ app.use("/api/v1/users", require("./api/controllers/user.controller"));
 app.use("/api/v1/products", require("./api/controllers/product.controller"));
 app.use("/api/v1/attractions", require("./api/controllers/attractions.controller"));
 
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(`${__dirname}/dist${distPath}/index.html`));
+app.get('/*', function (req, res) {
+	res.sendFile(path.join(`${__dirname}/dist${distPath}/index.html`));
 });
 // global error handler
 app.use(errorHandler);
@@ -29,5 +29,5 @@ app.use(errorHandler);
 // start server
 const port = process.env.NODE_ENV === "production" ? process.env.PORT || 80 : 4000;
 app.listen(port, () => {
-    console.log("Server listening on port " + port);
+	console.log("Server listening on port " + port);
 });
