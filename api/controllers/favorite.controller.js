@@ -1,20 +1,11 @@
-const express = require('express');
-const router = express.Router();
 const favoriteService = require('../services/favorite.service');
 
-router.get('/', getAll);
-router.post('/', create);
-router.put('/:id', update);
-router.delete('/:id', _delete);
-router.get('/user/:userid', getAllByUserId);
-
-module.exports = router;
-
-function getAll(req, res, next) {
-    favoriteService
-        .getAll()
-        .then(favorites => res.json(favorites));
-}
+module.exports = {
+    create,
+    update,
+    delete: _delete,
+    getAllByUserId
+};
 
 function create(req, res, next) {
     favoriteService

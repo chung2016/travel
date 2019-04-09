@@ -1,15 +1,13 @@
-const express = require('express');
-const router = express.Router();
 const attractionsService = require('../services/attractions.service');
 
-router.get('/', getAll);
-router.get('/:id', getById);
-router.post('/', create);
-router.put('/:id', update);
-router.delete('/:id', _delete);
-router.get('/user/:userid', getAllByUserId);
-
-module.exports = router;
+module.exports = {
+    getAll,
+    getById,
+    create,
+    update,
+    delete: _delete,
+    getAllByUserId
+};
 
 function getAll(req, res, next) {
     attractionsService

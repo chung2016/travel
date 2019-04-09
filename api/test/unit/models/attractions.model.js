@@ -1,10 +1,10 @@
 const expect = require('chai').expect;
 const sinon = require('sinon');
 
-const Attractions = require('../../models/attractions.model');
-const User = require('../../models/user.model');
+const Attractions = require('../../../models/attractions.model');
+const User = require('../../../models/user.model');
 
-describe('Attractions Testing', function () {
+describe('Attractions Model Testing', function () {
     let stubUser = new User();
     before(function () {
         sinon.stub(stubUser, 'save');

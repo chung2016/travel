@@ -1,8 +1,8 @@
 const expect = require('chai').expect;
-const sinon = require('sinon');
 
-const User = require('../../models/user.model');
-describe('User Testing', function () {
+const User = require('../../../models/user.model');
+
+describe('User Model Testing', function () {
 
 	it('should be invalid if username is empty', function (done) {
 		const user = new User({

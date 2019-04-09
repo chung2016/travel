@@ -1,19 +1,10 @@
-const express = require('express');
-const router = express.Router();
 const commentService = require('../services/comment.service');
 
-router.get('/', getAll);
-router.post('/', create);
-router.put('/:id', update);
-router.delete('/:id', _delete);
-
-module.exports = router;
-
-function getAll(req, res, next) {
-    commentService
-        .getAll()
-        .then(comments => res.json(comments));
-}
+module.exports = {
+    create,
+    update,
+    delete: _delete,
+};
 
 function create(req, res, next) {
     commentService

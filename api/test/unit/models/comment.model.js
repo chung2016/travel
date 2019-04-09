@@ -1,10 +1,11 @@
 const expect = require('chai').expect;
 const sinon = require('sinon');
 
-const Attractions = require('../../models/attractions.model');
-const User = require('../../models/user.model');
-const Favorite = require('../../models/favorite.model');
-describe('Favorite Testing', function () {
+const Attractions = require('../../../models/attractions.model');
+const User = require('../../../models/user.model');
+const Comment = require('../../../models/comment.model');
+
+describe('Comment Model Testing', function () {
     let stubUser = new User();
     let stubAttrations = new Attractions();
 
@@ -14,29 +15,29 @@ describe('Favorite Testing', function () {
     });
 
     it('should be invalid if user is empty', function (done) {
-        const favorite = new Favorite({
+        const comment = new Comment({
             'attractions': stubAttrations._id
         });
-        favorite.validate(function (err) {
+        comment.validate(function (err) {
             expect(err.errors.user).to.exist;
             done();
         });
     });
 
     it('should be invalid if attractions is empty', function (done) {
-        const favorite = new Favorite({
+        const comment = new Comment({
             'user': stubUser._id
         });
-        favorite.validate(function (err) {
+        comment.validate(function (err) {
             expect(err.errors.attractions).to.exist;
             done();
         });
     });
 
     it('should be invalid if user and attractions is empty', function (done) {
-        const favorite = new Favorite();
+        const comment = new Comment();
         
-        favorite.validate(function (err) {
+        comment.validate(function (err) {
             expect(err.errors.attractions && err.errors.user).to.exist;
             done();
         });

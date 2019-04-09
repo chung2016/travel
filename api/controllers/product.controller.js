@@ -1,14 +1,12 @@
-const express = require('express');
-const router = express.Router();
 const productService = require('../services/product.service');
 
-router.get('/', getAll);
-router.get('/:id', getById);
-router.post('/', create);
-router.put('/:id', update);
-router.delete('/:id', _delete);
-
-module.exports = router;
+module.exports = {
+	getAll,
+	getById,
+	create,
+	update,
+	delete: _delete
+};
 
 function getAll(req, res, next) {
 	productService
