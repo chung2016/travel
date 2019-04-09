@@ -30,4 +30,6 @@ module.exports = {
 	User: require('../models/user.model'),
 	Product: require('../models/product.model'),
 	Attractions: require('../models/attractions.model'),
+	Favorite: require('../models/favorite.model'),
+	Comment: require('../models/comment.model'),
 };

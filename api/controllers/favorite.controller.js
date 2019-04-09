@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const attractionsService = require('../services/attractions.service');
+const favoriteService = require('../services/favorite.service');
 
 router.get('/', getAll);
-router.get('/:id', getById);
 router.post('/', create);
 router.put('/:id', update);
 router.delete('/:id', _delete);
@@ -12,42 +11,35 @@ router.get('/user/:userid', getAllByUserId);
 module.exports = router;
 
 function getAll(req, res, next) {
-    attractionsService
+    favoriteService
         .getAll()
-        .then(attractions => res.json(attractions));
-}
-
-function getById(req, res, next) {
-    attractionsService
-        .getById(req.params.id)
-        .then(attractions => (attractions ? res.json(attractions) : res.sendStatus(404)))
-        .catch(err => next(err));
+        .then(favorites => res.json(favorites));
 }
 
 function create(req, res, next) {
-    attractionsService
+    favoriteService
         .create(req.body)
-        .then((attractions) => res.json(attractions))
+        .then(favorite => res.json(favorite))
         .catch(err => next(err));
 }
 
 function update(req, res, next) {
-    attractionsService
+    favoriteService
         .update(req.params.id, req.body)
-        .then((attractions) => res.json(attractions))
+        .then((favorite) => res.json(favorite))
         .catch(err => next(err));
 }
 
-function _delete(req, res, next) {
-    attractionsService
+function _delete() {
+    favoriteService
         .delete(req.params.id)
         .then(() => res.json({}))
         .catch(err => next(err));
 }
 
 function getAllByUserId(req, res, next) {
-    attractionsService
+    favoriteService
         .getAllByUserId(req.params.userid)
-        .then(attractions => res.json(attractions))
+        .then(favorites => res.json(favorites))
         .catch(err => next(err));
 }
