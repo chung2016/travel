@@ -1,9 +1,9 @@
 const expect = require('chai').expect;
 const sinon = require('sinon');
 
-const Attractions = require('../../../models/attractions.model');
-const User = require('../../../models/user.model');
-const Favorite = require('../../../models/favorite.model');
+const Attractions = require('../../models/attractions.model');
+const User = require('../../models/user.model');
+const Favorite = require('../../models/favorite.model');
 
 describe('Favorite Model Testing', function () {
     let stubUser = new User();

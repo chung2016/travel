@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 
-const User = require('../../../models/user.model');
+const User = require('../../models/user.model');
 
 describe('User Model Testing', function () {
 
