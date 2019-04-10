@@ -15,7 +15,7 @@ import {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'assignment';
+  title = 'travel';
 
   constructor(private _loadingBar: SlimLoadingBarService, private _router: Router) {
     this._router.events.subscribe((event: Event) => {

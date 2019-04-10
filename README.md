@@ -2,16 +2,20 @@
 
 ## Frontend - Angular
 
+### Frontend Dependencies
+- [jQuery](https://github.com/jquery/jquery)
+- [bootstrap4](https://github.com/twbs/bootstrap)
+
 - [angular-cli](https://github.com/angular/angular-cli)
 
-### Automation Testing Dependencies
+### Automated testing Dependencies
 - [chai](https://github.com/chaijs/chai)
 - [sinon](https://github.com/sinonjs/sinon)
 - [mocha](https://github.com/mochajs/mocha)
 
-### Automation testing
+### Automated testing
 
-- `npm test` to run automation testing
+- `npm test` to run automated testing
 
 ### Web API Dependencies
 

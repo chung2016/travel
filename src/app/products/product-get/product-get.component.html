@@ -1,3 +1,4 @@
+<a routerLink="/products" class="btn btn-dark">Product List</a>
 <dl class="dl-horizontal">
   <dt>Name</dt>
   <dd>{{product.name}}</dd>
@@ -6,3 +7,4 @@
   <dt>Price</dt>
   <dd>{{product.price}}</dd>
 </dl>
+<a [routerLink]="['/product/edit', product._id]" class="btn btn-success" [class.disabled]="loading">Edit</a>
