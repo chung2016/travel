@@ -4,6 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const jwt = require("./api/_helpers/jwt");
 const errorHandler = require("./api/_helpers/error_handles");
+const path = require("path");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -11,6 +12,10 @@ const distPath = process.env.NODE_ENV === 'production' ? '' : '/assignment';
 
 app.use(express.static(`${__dirname}/dist${distPath}`));
 app.use(cors());
+
+app.get('/*', function (req, res) {
+	res.sendFile(path.join(`${__dirname}/dist${distPath}/index.html`));
+});
 
 // use JWT auth to secure the api
 app.use(jwt());
@@ -23,9 +28,6 @@ app.use("/api/v1/attractions", require("./api/routers/attractions.router"));
 app.use("/api/v1/comment", require("./api/routers/comment.router"));
 app.use("/api/v1/favorite", require("./api/routers/favorite.router"));
 
-app.get('/*', function (req, res) {
-	res.sendFile(path.join(`${__dirname}/dist${distPath}/index.html`));
-});
 // global error handler
 app.use(errorHandler);
 
