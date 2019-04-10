@@ -8,7 +8,7 @@ import { AlertService, ProductService } from '../../_services';
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.sass']
+  styleUrls: ['./product-edit.component.scss']
 })
 export class ProductEditComponent implements OnInit {
   product: any = {};

@@ -7,7 +7,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-product-create',
   templateUrl: './product-create.component.html',
-  styleUrls: ['./product-create.component.sass']
+  styleUrls: ['./product-create.component.scss']
 })
 export class ProductCreateComponent implements OnInit {
   createProductForm: FormGroup;

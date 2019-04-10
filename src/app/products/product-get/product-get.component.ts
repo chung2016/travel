@@ -6,7 +6,7 @@ import { ProductService } from '../../_services';
 @Component({
   selector: 'app-product-get',
   templateUrl: './product-get.component.html',
-  styleUrls: ['./product-get.component.sass']
+  styleUrls: ['./product-get.component.scss']
 })
 export class ProductGetComponent implements OnInit {
   
