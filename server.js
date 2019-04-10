@@ -14,7 +14,7 @@ app.use(express.static(`${__dirname}/dist${distPath}`));
 app.use(cors());
 
 // use JWT auth to secure the api
-app.use("/api/v1" ,jwt());
+app.use("/api/v1", jwt());
 
 // testing
 app.use("/api/v1/products", require("./api/routers/product.router"));
