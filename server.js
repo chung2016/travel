@@ -13,12 +13,8 @@ const distPath = process.env.NODE_ENV === 'production' ? '' : '/assignment';
 app.use(express.static(`${__dirname}/dist${distPath}`));
 app.use(cors());
 
-app.get('/*', function (req, res) {
-	res.sendFile(path.join(`${__dirname}/dist${distPath}/index.html`));
-});
-
 // use JWT auth to secure the api
-app.use(jwt());
+app.use("/api/v1" ,jwt());
 
 // testing
 app.use("/api/v1/products", require("./api/routers/product.router"));
@@ -27,6 +23,10 @@ app.use("/api/v1/users", require("./api/routers/user.router"));
 app.use("/api/v1/attractions", require("./api/routers/attractions.router"));
 app.use("/api/v1/comment", require("./api/routers/comment.router"));
 app.use("/api/v1/favorite", require("./api/routers/favorite.router"));
+
+app.get('/*', function (req, res) {
+	res.sendFile(path.join(`${__dirname}/dist${distPath}/index.html`));
+});
 
 // global error handler
 app.use(errorHandler);
