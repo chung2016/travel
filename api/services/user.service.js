@@ -13,7 +13,8 @@ module.exports = {
 };
 
 async function authenticate({ username, password }) {
-	const user = await User.findOne({ username });
+	const criteria = (username.indexOf('@') === -1) ? {username: username} : {email: username};
+	const user = await User.findOne(criteria);
 	if (user && user.comparePassword(password)) {
 		const { password, ...userWithoutPassword } = user.toObject();
 		const token = jwt.sign({ sub: user.id }, config.secret);
@@ -37,6 +38,9 @@ async function create(userParam) {
 	if (await User.findOne({ username: userParam.username })) {
 		throw 'Username "' + userParam.username + '" is already taken';
 	}
+	if (await User.findOne({email: userParam.email})) {
+		throw 'E-mail "' + userParam.email + '" is aleady taken';
+	}
 
 	const user = new User(userParam);
 
@@ -55,6 +59,13 @@ async function update(id, userParam) {
 		(await User.findOne({ username: userParam.username }))
 	) {
 		throw 'Username "' + userParam.username + '" is already taken';
+	}
+
+	if (
+		user.email !== userParam.email &&
+		(await User.findOne({ email: userParam.email }))
+	) {
+		throw 'E-mail "' + userParam.email + '" is already taken';
 	}
 
 	// copy userParam properties to user

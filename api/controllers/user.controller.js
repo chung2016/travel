@@ -16,7 +16,7 @@ function authenticate(req, res, next) {
 		.then(user =>
 			user
 				? res.json(user)
-				: res.status(400).json({ message: 'Username or password is incorrect' })
+				: res.status(400).json({ message: 'These credentials do not match our records.' })
 		)
 		.catch(err => next(err));
 }

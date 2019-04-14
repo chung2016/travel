@@ -14,8 +14,12 @@ export class UserService {
     return this.http.get<User[]>(`${this.uri}`);
   }
 
-  getById(id: number) {
+  getById(id: Number) {
     return this.http.get(`${this.uri}/${id}`);
+  }
+
+  getCurrent() {
+    return this.http.get(`${this.uri}/current`);
   }
 
   register(user: User) {
@@ -26,7 +30,8 @@ export class UserService {
     return this.http.put(`${this.uri}/${user.id}`, user);
   }
 
-  delete(id: number) {
+  delete(id: Number) {
     return this.http.delete(`${this.uri}/${id}`);
   }
+
 }
