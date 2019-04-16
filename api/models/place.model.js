@@ -2,9 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-	author: {
-		type: Schema.Types.ObjectId,
-		ref: 'User',
+	name: {
+		type: String,
 		required: true,
 	},
 	location: {
@@ -13,6 +12,10 @@ const schema = new Schema({
 	},
 	description: {
 		type: String,
+	},
+	author: {
+		type: Schema.Types.ObjectId,
+		ref: 'User',
 	},
 	authorComment: {
 		type: String
@@ -24,7 +27,7 @@ const schema = new Schema({
 	updatedAt: {
 		type: Date,
 		default: Date.now
-	}
+	},
 });
 
 schema.pre('save', function (next) {

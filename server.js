@@ -18,7 +18,7 @@ app.use("/api/v1", jwt());
 
 // api routes
 app.use("/api/v1/users", require("./api/routers/user.router"));
-app.use("/api/v1/place", require("./api/routers/place.router"));
+app.use("/api/v1/places", require("./api/routers/place.router"));
 app.use("/api/v1/comment", require("./api/routers/comment.router"));
 app.use("/api/v1/favorite", require("./api/routers/favorite.router"));
 

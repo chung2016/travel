@@ -12,8 +12,8 @@ module.exports = {
 	delete: _delete
 };
 
-async function authenticate({ username, password }) {
-	const criteria = (username.indexOf('@') === -1) ? {username: username} : {email: username};
+async function authenticate({ email, password }) {
+	const criteria = {email: email};
 	const user = await User.findOne(criteria);
 	if (user && user.comparePassword(password)) {
 		const { password, ...userWithoutPassword } = user.toObject();

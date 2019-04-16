@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertService, AuthenticationService, UserService } from '../core/services';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs/operators';
 import { User } from '../core/models';
+import { UserService } from '../core/services';
+import { ActivatedRoute } from '@angular/router';
+import { concatMap ,  tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -11,54 +10,27 @@ import { User } from '../core/models';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user: any = {};
-  profileForm: FormGroup;
-  loading = false;
-  submitted = false;
+  isCurrentUser: boolean;
   currentUser: User;
+  profile: User;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private alertService: AlertService,
+    private route: ActivatedRoute,
     private userService: UserService
   ) { }
 
   ngOnInit() {
-    this.profileForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
-
-    this.userService.getCurrent().subscribe(user => {
-      this.user = user;
-    });
-  }
-
-  get f() {
-    return this.profileForm.controls;
-  }
-
-  onSubmit() {
-    this.submitted = true;
-    if (this.profileForm.invalid) {
-      return;
-    }
-    this.loading = true;
-    Object.assign(this.user, this.profileForm.value);
-    this.userService
-      .update(this.user)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.alertService.success('Update successful');
-          this.loading = false;
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        }
-      );
+    this.route.data.pipe(
+      concatMap((data: { profile: User }) => {
+        this.profile = data.profile;
+        return this.userService.getCurrent().pipe(tap(
+          (userData: User) => {
+            this.currentUser = userData;
+            this.isCurrentUser = (this.currentUser.id === this.profile.id);
+          }
+        ));
+      })
+    ).subscribe();
   }
 
 }

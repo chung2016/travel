@@ -3,10 +3,10 @@
     <h2>Login</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <input type="text" formControlName="username" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Username"/>
-        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-          <div *ngIf="f.username.errors.required">Username is required</div>
+        <input type="text" formControlName="email" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="E-mail"/>
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">E-mail is required</div>
         </div>
       </div>
       <div class="form-group">

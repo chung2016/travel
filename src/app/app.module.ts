@@ -12,10 +12,11 @@ import { JwtInterceptor, ErrorInterceptor } from './core/helpers';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 
-import { ProfileComponent } from './profile/profile.component';
+import { SettingComponent } from './setting/setting.component';
 import { AuthModule } from './auth/auth.module';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AlertComponent } from './shared/alert/alert.component';
+import { PlaceModule } from './place/place.module';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,9 @@ import { AlertComponent } from './shared/alert/alert.component';
     HomeComponent,
     PageNotFoundComponent,
     
-    
     AlertComponent,
     NavbarComponent,
-    ProfileComponent,
-  
+    SettingComponent,  
   ],
   imports: [
     BrowserModule,
@@ -36,7 +35,9 @@ import { AlertComponent } from './shared/alert/alert.component';
     SlimLoadingBarModule,
     ReactiveFormsModule,
     HttpClientModule,
+    // custom
     AuthModule,
+    PlaceModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
