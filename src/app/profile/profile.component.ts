@@ -27,8 +27,6 @@ export class ProfileComponent implements OnInit {
         return this.userService.getCurrent().pipe(tap(
           (userData: User) => {
             this.currentUser = userData;
-            console.log('current:'+this.currentUser.id)
-            console.log('puser:'+this.profile.id)
             this.isCurrentUser = (this.currentUser.id === this.profile.id);
           }
         ));

@@ -11,6 +11,7 @@ export class PlacePreviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.place)
   }
 
 }

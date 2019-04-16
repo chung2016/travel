@@ -27,7 +27,6 @@ export class PlaceListComponent {
     this.placeService.getByUserId(this.query.filters.author)
     .subscribe(places => {
       this.loading = false;
-      console.log(places)
       this.places = places;
     });
   }

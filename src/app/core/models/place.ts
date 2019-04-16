@@ -7,4 +7,6 @@ export interface Place {
     description: string;
     authorComment: string;
     author: User;
+    createdAt: string;
+    updatedAt: string;
 }
