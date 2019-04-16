@@ -9,7 +9,7 @@ const schema = new Schema({
     },
     attractions: {
 		type: Schema.Types.ObjectId,
-		ref: 'Attractions',
+		ref: 'Place',
 		required: true,
 	},
 	createdAt: {

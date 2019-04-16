@@ -17,22 +17,14 @@ const schema = new Schema({
 		required: true,
 		index: { unique: true },
 	},
-	firstName: {
-		type: String,
-		required: true,
-	},
-	lastName: {
-		type: String,
-		required: true,
-	},
 	password: {
 		type: String,
 		required: true
 	},
-	attractions: [{
+	place: {
 		type: Schema.Types.ObjectId,
-		ref: 'Attractions',
-	}],
+		ref: 'Place',
+	},
 	createdAt: {
 		type: Date,
 		default: Date.now

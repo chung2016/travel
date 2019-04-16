@@ -2,17 +2,19 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-	user: {
+	author: {
 		type: Schema.Types.ObjectId,
 		ref: 'User',
 		required: true,
-    },
-    attractions: {
-		type: Schema.Types.ObjectId,
-		ref: 'Place',
+	},
+	location: {
+		type: String,
 		required: true,
 	},
-	comment: {
+	description: {
+		type: String,
+	},
+	authorComment: {
 		type: String
 	},
 	createdAt: {
@@ -32,4 +34,4 @@ schema.pre('save', function (next) {
 
 schema.set('toJSON', { virtuals: true });
 
-module.exports = mongoose.model('Commtent', schema);
+module.exports = mongoose.model('Place', schema);

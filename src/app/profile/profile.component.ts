@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertService, AuthenticationService, UserService } from '../_services';
+import { AlertService, AuthenticationService, UserService } from '../core/services';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { User } from '../_models';
+import { User } from '../core/models';
 
 @Component({
   selector: 'app-profile',
@@ -27,9 +27,7 @@ export class ProfileComponent implements OnInit {
     this.profileForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      password: ['', [Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
     this.userService.getCurrent().subscribe(user => {
