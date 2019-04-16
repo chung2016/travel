@@ -1,22 +1,22 @@
 const expect = require('chai').expect;
 const sinon = require('sinon');
 
-const Attractions = require('../../models/attractions.model');
+const Place = require('../../models/place.model');
 const User = require('../../models/user.model');
 const Comment = require('../../models/comment.model');
 
 describe('Comment Model Testing', function () {
     let stubUser = new User();
-    let stubAttrations = new Attractions();
+    let stubPlace = new Place();
 
     before(function () {
         sinon.stub(stubUser, 'save');
-        sinon.stub(stubAttrations, 'save');
+        sinon.stub(stubPlace, 'save');
     });
 
     it('should be invalid if user is empty', function (done) {
         const comment = new Comment({
-            'attractions': stubAttrations._id
+            'place': stubPlace._id
         });
         comment.validate(function (err) {
             expect(err.errors.user).to.exist;
@@ -24,21 +24,21 @@ describe('Comment Model Testing', function () {
         });
     });
 
-    it('should be invalid if attractions is empty', function (done) {
+    it('should be invalid if place is empty', function (done) {
         const comment = new Comment({
             'user': stubUser._id
         });
         comment.validate(function (err) {
-            expect(err.errors.attractions).to.exist;
+            expect(err.errors.place).to.exist;
             done();
         });
     });
 
-    it('should be invalid if user and attractions is empty', function (done) {
+    it('should be invalid if user and place is empty', function (done) {
         const comment = new Comment();
         
         comment.validate(function (err) {
-            expect(err.errors.attractions && err.errors.user).to.exist;
+            expect(err.errors.place && err.errors.user).to.exist;
             done();
         });
     });

@@ -25,5 +25,5 @@ async function _delete(id) {
 async function getAllByUserId(userid) {
     return await Favorite
         .where('user', userid)
-        .populate({ 'path': 'attractions', 'select': 'id' })
+        .populate({ 'path': 'place', 'select': 'id' })
 }

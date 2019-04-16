@@ -48,16 +48,16 @@ This project creates the following API:
 | PUT       | /api/v1/users/:id                 | Update user by id                        |
 | DELETE    | /api/v1/users/:id                 | Delete user by id                        |
 
-#### Attractions
+#### Places
 
-| HTTP Verb |            Path (URL)            |          Description           |
-| --------- | -------------------------------- | ------------------------------ |
-| GET       | /api/v1/attractions              | Get all attractions            |
-| POST      | /api/v1/attractions              | Create attractions             |
-| GET       | /api/v1/attractions/:id          | Get attractions by id          |
-| PUT       | /api/v1/attractions/:id          | Update attractions by id       |
-| DELETE    | /api/v1/attractions/:id          | Delete attractions by id       |
-| GET       | /api/v1/attractions/user/:userid | Get all attractions by user id |
+| HTTP Verb |         Path (URL)          |        Description        |
+| --------- | --------------------------- | ------------------------- |
+| GET       | /api/v1/places              | Get all places            |
+| POST      | /api/v1/places              | Create places             |
+| GET       | /api/v1/places/:id          | Get places by id          |
+| PUT       | /api/v1/places/:id          | Update places by id       |
+| DELETE    | /api/v1/places/:id          | Delete places by id       |
+| GET       | /api/v1/places/user/:userid | Get all places by user id |
 
 #### Favorite
 

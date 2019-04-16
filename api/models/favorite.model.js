@@ -7,7 +7,7 @@ const schema = new Schema({
 		ref: 'User',
 		required: true,
     },
-    attractions: {
+    place: {
 		type: Schema.Types.ObjectId,
 		ref: 'Place',
 		required: true,

@@ -10,14 +10,14 @@ describe('Place Model Testing', function () {
         sinon.stub(stubUser, 'save');
     });
 
-    it('should be invalid if author is empty', function (done) {
+    it('should be invalid if name is empty', function (done) {
         const place = new Place({
             'location': 'test location',
             'description': 'test description',
             'authorComment': 'test author comment',
         })
         place.validate(function (err) {
-            expect(err.errors.author).to.exist;
+            expect(err.errors.name).to.exist;
             done();
         });
     });
@@ -34,20 +34,21 @@ describe('Place Model Testing', function () {
         });
     });
 
-    it('should be invalid if author and location are empty', function (done) {
+    it('should be invalid if name and location are empty', function (done) {
         const place = new Place({
             'description': 'test description',
             'authorComment': 'test author comment',
         })
         place.validate(function (err) {
-            expect(err.errors.author && err.errors.location).to.exist;
+            expect(err.errors.name && err.errors.location).to.exist;
             done();
         });
     });
 
-    it('should be valid attraction', function (done) {
+    it('should be valid place', function (done) {
         const place = new Place({
             'author': stubUser._id,
+            'name': 'test name',
             'location': 'test location',
             'description': 'test description',
             'authorComment': 'test author comment',
