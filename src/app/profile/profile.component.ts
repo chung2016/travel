@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Profile } from '../core/models';
-import { UserService } from '../core/services';
+import { UserService, AuthenticationService } from '../core/services';
 import { ActivatedRoute } from '@angular/router';
 import { concatMap ,  tap } from 'rxjs/operators';
 
@@ -16,19 +16,23 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+    private authenticationService: AuthenticationService
+  ) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
   ngOnInit() {
     this.route.data.pipe(
       concatMap((data: { profile: Profile }) => {
         this.profile = data.profile;
-        
+        this.isCurrentUser = (this.authenticationService.currentUserValue.id === this.profile.id);
+        this.currentUser = this.authenticationService.currentUserValue;
         return this.userService.getCurrent().pipe(tap(
-          (userData: User) => {
-            this.currentUser = userData;
-            this.isCurrentUser = (this.currentUser.id === this.profile.id);
-          }
+          // (userData: User) => {
+          //   this.currentUser = userData;
+          //   this.isCurrentUser = (this.currentUser.id === this.profile.id);
+          // }
         ));
       })
     ).subscribe();

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User, Place } from 'src/app/core/models';
-import { PlaceService } from 'src/app/core/services';
 import { PlaceListConfig } from 'src/app/core/models/place-list-config';
 
 @Component({

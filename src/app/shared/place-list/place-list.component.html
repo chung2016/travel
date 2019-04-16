@@ -4,3 +4,8 @@
   [hidden]="!loading">
   Loading places...
 </div>
+
+<div class="app-place-preview"
+  [hidden]="loading || places.length">
+  No Record...
+</div>
