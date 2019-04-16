@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../core/models';
+import { User, Profile } from '../core/models';
 import { UserService } from '../core/services';
 import { ActivatedRoute } from '@angular/router';
 import { concatMap ,  tap } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { concatMap ,  tap } from 'rxjs/operators';
 export class ProfileComponent implements OnInit {
   isCurrentUser: boolean;
   currentUser: User;
-  profile: User;
+  profile: Profile;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.pipe(
-      concatMap((data: { profile: User }) => {
+      concatMap((data: { profile: Profile }) => {
         this.profile = data.profile;
         
         return this.userService.getCurrent().pipe(tap(

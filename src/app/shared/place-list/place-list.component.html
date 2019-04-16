@@ -1,1 +1,6 @@
 <app-place-preview *ngFor="let place of places" [place]="place"></app-place-preview>
+
+<div class="app-place-preview"
+  [hidden]="!loading">
+  Loading places...
+</div>

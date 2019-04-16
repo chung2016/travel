@@ -3,13 +3,13 @@ import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs';
 
 import { User } from '../core/models';
-import { UserService } from '../core/services';
+import { ProfileService } from '../core/services';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ProfileResolver implements Resolve<User> {
   constructor(
-    private userService: UserService,
+    private profileService: ProfileService,
     private router: Router
   ) { }
 
@@ -17,8 +17,8 @@ export class ProfileResolver implements Resolve<User> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
-
-    return this.userService.getById(route.params['userid'])
+    
+    return this.profileService.getById(route.params['userid'])
       .pipe(
         catchError((err) => this.router.navigateByUrl('/'))
       );
