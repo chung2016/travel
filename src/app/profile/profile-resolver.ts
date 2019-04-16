@@ -18,7 +18,7 @@ export class ProfileResolver implements Resolve<User> {
     state: RouterStateSnapshot
   ): Observable<any> {
 
-    return this.userService.getCurrent()
+    return this.userService.getById(route.params['userid'])
       .pipe(
         catchError((err) => this.router.navigateByUrl('/'))
       );

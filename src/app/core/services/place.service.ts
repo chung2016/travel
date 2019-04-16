@@ -15,5 +15,13 @@ export class PlaceService {
   create(place: Place) {
     return this.http.post(`${this.uri}`, place);
   }
+
+  getAll() {
+    return this.http.get<Place[]>(`${this.uri}`);
+  }
+
+  getByUserId(userid: number) {
+    return this.http.get(`${this.uri}/user/${userid}`);
+  }
   
 }

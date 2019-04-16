@@ -9,7 +9,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { JwtInterceptor, ErrorInterceptor } from './core/helpers';
 
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 
 import { SettingComponent } from './setting/setting.component';
@@ -17,17 +16,17 @@ import { AuthModule } from './auth/auth.module';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceModule } from './place/place.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
 
     HomeComponent,
-    PageNotFoundComponent,
     
     AlertComponent,
     NavbarComponent,
-    SettingComponent,  
+    SettingComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +37,7 @@ import { PlaceModule } from './place/place.module';
     // custom
     AuthModule,
     PlaceModule,
+    SharedModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

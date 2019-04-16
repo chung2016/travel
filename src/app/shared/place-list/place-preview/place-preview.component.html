@@ -1,0 +1,15 @@
+<div class="place-preview">
+  <div class="place-info">
+    <a class="author" [routerLink]="['/profile', place.author._id]">
+      Username: {{ place.author.username }}
+    </a>
+    <span class="date">
+      Publish At: {{ place.createdAt | date: 'longDate' }}
+    </span>
+  </div>
+  <a [routerLink]="['/place', place._id]" class="preview-link">
+    <h1>Place Name: {{ place.name }}</h1>
+    <p>Location: {{ place.location }}</p>
+    <span>Read more...</span>
+  </a>
+</div>
