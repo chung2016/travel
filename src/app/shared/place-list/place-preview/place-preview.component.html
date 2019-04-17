@@ -1,6 +1,6 @@
 <div class="place-preview">
   <div class="place-info">
-    <a class="author" [routerLink]="['/profile', place.author.id]">
+    <a class="author" [routerLink]="['/profile', place.author.id]" *ngIf="place.author">
       Username: {{ place.author.username }}
     </a>
     <span class="date">

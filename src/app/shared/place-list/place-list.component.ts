@@ -21,15 +21,25 @@ export class PlaceListComponent {
   loading = false;
 
   runQuery() {
-    
+    if (this.query.filters.author) {
+      this.placeService.getByUserId(this.query.filters.author)
+        .subscribe(places => {
+          this.loading = false;
+          this.places = places;
+        }, err => {
+          console.log(err)
+        });
+    } else {
+      this.placeService.getAll()
+        .subscribe(places => {
+          this.loading = false;
+          this.places = places;
+        }, err => {
+          console.log(err)
+        });
+    }
     this.places = [];
     this.loading = true;
-    this.placeService.getByUserId(this.query.filters.author)
-    .subscribe(places => {
-      this.loading = false;
-      this.places = places;
-    }, err => {
-      console.log(err)
-    });
+
   }
 }

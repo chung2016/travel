@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User, Place } from 'src/app/core/models';
+import { User } from 'src/app/core/models';
 import { PlaceListConfig } from 'src/app/core/models/place-list-config';
 
 @Component({
@@ -10,7 +10,6 @@ import { PlaceListConfig } from 'src/app/core/models/place-list-config';
 })
 export class ProfilePlacesComponent implements OnInit {
   user: User;
-  places: Place[];
   placeListConfig: PlaceListConfig = {
     filters: {}
   };
