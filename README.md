@@ -59,15 +59,6 @@ This project creates the following API:
 | DELETE    | /api/v1/places/:id          | Delete places by id       |
 | GET       | /api/v1/places/user/:userid | Get all places by user id |
 
-#### Favorite
-
-| HTTP Verb |           Path (URL)           |           Description           |
-| --------- | ------------------------------ | ------------------------------- |
-| GET       | /api/v1/favorites              | Get all favorite favorites      |
-| POST      | /api/v1/favorites              | Create favorite favorites       |
-| DELETE    | /api/v1/favorites/:id          | Delete favorite favorites by id |
-| GET       | /api/v1/favorites/user/:userid | Get all favorites by user id    |
-
 #### Comments
 
 | HTTP Verb |      Path (URL)      |     Description      |

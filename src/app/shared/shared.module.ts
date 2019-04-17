@@ -19,7 +19,7 @@ import { PlacePreviewComponent } from './place-list/place-preview/place-preview.
   ],
   exports: [
     PlaceListComponent,
-    PlacePreviewComponent
+    PlacePreviewComponent,
   ]
 })
 export class SharedModule { }

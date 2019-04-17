@@ -29,6 +29,5 @@ mongoose.Promise = global.Promise;
 module.exports = {
 	User: require('../models/user.model'),
 	Place: require('../models/place.model'),
-	Favorite: require('../models/favorite.model'),
 	Comment: require('../models/comment.model'),
 };

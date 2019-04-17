@@ -37,6 +37,8 @@ async function _delete(id) {
 }
 
 async function getAllByUserId(userid) {
-	return await Place
-		.where('author', userid).populate({ path: 'author', select: 'email username id' });
+	let places = await Place
+		.where('author', userid)
+		.populate({ path: 'author', select: 'email username id' });
+	return places;
 }
