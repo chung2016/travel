@@ -80,4 +80,13 @@ export class PlaceShowComponent implements OnInit {
   updateNewComment(values: Object) {
     Object.assign(this.newComment, values);
   }
+
+  onDeleteComment(comment) {
+    this.commentService.delete(comment.id)
+      .subscribe(
+        data => {
+          this.comments = this.comments.filter((item) => item !== comment);
+        }
+      );
+  }
 }

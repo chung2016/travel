@@ -21,7 +21,7 @@ function update(req, res, next) {
         .catch(err => next(err));
 }
 
-function _delete() {
+function _delete(req, res,next) {
     commentService
         .delete(req.params.id)
         .then(() => res.json({}))

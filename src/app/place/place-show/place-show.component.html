@@ -13,7 +13,9 @@
           <p *ngIf="!loading" class="content-text">{{ place.authorComment }}</p>
         </div>
         <div class="place-post-comment">
-          <form class="card comment-form" [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+          <div *ngIf="!currentUser" class="comment-auth-message"> <a routerLink="/login">Login</a> or <a
+              routerLink="/register">Register</a> to add comments </div>
+          <form class="card comment-form" [formGroup]="commentForm" (ngSubmit)="onSubmit()" *ngIf="currentUser">
             <div class="card-block">
               <textarea name="" formControlName="message" class="form-control" [disabled]="formloading"
                 placeholder="Write a comment..." rows="3"></textarea>
@@ -31,7 +33,8 @@
           </form>
         </div>
         <div class="place-comments">
-          <app-place-comment *ngFor="let comment of comments" [comment]="comment">
+          <app-place-comment *ngFor="let comment of comments" [comment]="comment"
+            (deleteComment)="onDeleteComment(comment)">
           </app-place-comment>
         </div>
       </div>

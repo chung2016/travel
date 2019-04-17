@@ -11,5 +11,8 @@
     <span class="date-posted">
       {{ comment.createdAt | date: 'longDate' }}
     </span>
+    <span class="delete-comment" [hidden]="!canModify" *ngIf="currentUser">
+      <button class="btn btn-danger" (click)="deleteClicked()"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+    </span>
   </div>
 </div>

@@ -16,4 +16,8 @@ export class CommentService {
   create(comment: Comment) {
     return this.http.post<Comment>(`${this.uri}`, comment);
   }
+
+  delete(id: number) {
+    return this.http.delete(`${this.uri}/${id}`);
+  }
 }
