@@ -4,8 +4,8 @@ const Comment = db.Comment;
 module.exports = {
     getAll,
     create,
-    update,
     delete: _delete,
+    getByPlaceId
 }
 
 async function getAll() {
@@ -15,17 +15,18 @@ async function getAll() {
 async function create(param) {
     const comment = new Comment(param);
     await comment.save();
-    return comment;
-}
-
-async function update(id, param) {
-	const comment = await Comment.findById(id);
-	if (!comment) throw 'Comment not found';
-	Object.assign(comment, param);
-	await comment.save();
-	return comment;
+    return await getById(comment.id);
 }
 
 async function _delete(id) {
     await Comment.findOneAndDelete(id);
+}
+
+async function getById(id) {
+    return await Comment.findById(id).populate({ path: 'user', select: 'username email id' });
+}
+
+
+async function getByPlaceId(placeid) {
+    return await Comment.where('place', placeid).populate({ path: 'user', select: 'username email id' });
 }

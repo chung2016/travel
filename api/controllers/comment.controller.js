@@ -4,6 +4,7 @@ module.exports = {
     create,
     update,
     delete: _delete,
+    getByPlaceId,
 };
 
 function create(req, res, next) {
@@ -24,5 +25,12 @@ function _delete() {
     commentService
         .delete(req.params.id)
         .then(() => res.json({}))
+        .catch(err => next(err));
+}
+
+function getByPlaceId(req, res, next) {
+    commentService
+        .getByPlaceId(req.params.placeid)
+        .then(comments => res.json(comments))
         .catch(err => next(err));
 }

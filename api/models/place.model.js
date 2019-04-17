@@ -12,13 +12,16 @@ const schema = new Schema({
 	description: {
 		type: String,
 	},
+	authorComment: {
+		type: String
+	},
 	author: {
 		type: Schema.Types.ObjectId,
 		ref: 'User',
 	},
-	authorComment: {
-		type: String
-	},
+	comments: [{ 
+		type: mongoose.Schema.Types.ObjectId, ref: 'Comment' 
+	}],
 	createdAt: {
 		type: Date,
 		default: Date.now

@@ -12,6 +12,28 @@
           <h4>Author Comment</h4>
           <p *ngIf="!loading" class="content-text">{{ place.authorComment }}</p>
         </div>
+        <div class="place-post-comment">
+          <form class="card comment-form" [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+            <div class="card-block">
+              <textarea name="" formControlName="message" class="form-control" [disabled]="formloading"
+                placeholder="Write a comment..." rows="3"></textarea>
+              <!-- <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                <div *ngIf="f.message.errors.required">Comment is required</div>
+              </div> -->
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-info" type="submit" [disabled]="formloading||f.message.errors">
+                Post Comment
+              </button>
+              <img *ngIf="formloading" class="pl-3"
+                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+          </form>
+        </div>
+        <div class="place-comments">
+          <app-place-comment *ngFor="let comment of comments" [comment]="comment">
+          </app-place-comment>
+        </div>
       </div>
       <div class="col-md-3">
         <div class="card">

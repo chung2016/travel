@@ -20,7 +20,7 @@ app.use("/api/v1", jwt());
 app.use("/api/v1/users", require("./api/routers/user.router"));
 app.use("/api/v1/profile", require("./api/routers/profile.router"));
 app.use("/api/v1/places", require("./api/routers/place.router"));
-app.use("/api/v1/comment", require("./api/routers/comment.router"));
+app.use("/api/v1/comments", require("./api/routers/comment.router"));
 
 app.get('/*', function (req, res) {
 	res.sendFile(path.join(`${__dirname}/dist${distPath}/index.html`));

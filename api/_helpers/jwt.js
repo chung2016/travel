@@ -12,7 +12,8 @@ function jwt() {
 			'/api/v1/users/authenticate',
 			'/api/v1/users/register',
 			/\/api\/v1\/profile\/*/,
-			{ url: /\/api\/v1\/places\/*/ , methods: ['GET'] }
+			{ url: /\/api\/v1\/places\/*/ , methods: ['GET'] },
+			{ url: /\/api\/v1\/comments\/*/ , methods:['GET'] }
 		]
 	});
 }

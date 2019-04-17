@@ -10,9 +10,8 @@ const schema = new Schema({
     place: {
 		type: Schema.Types.ObjectId,
 		ref: 'Place',
-		required: true,
 	},
-	comment: {
+	message: {
 		type: String
 	},
 	createdAt: {
@@ -32,4 +31,4 @@ schema.pre('save', function (next) {
 
 schema.set('toJSON', { virtuals: true });
 
-module.exports = mongoose.model('Commtent', schema);
+module.exports = mongoose.model('Comment', schema);
