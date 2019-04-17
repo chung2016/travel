@@ -1,3 +1,33 @@
-<p>
-  place-show works!
-</p>
+<div class="place-show">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="container place-content">
+          <h4>Name</h4>
+          <p *ngIf="!loading" class="content-text">{{ place.name }}</p>
+          <h4>Location</h4>
+          <p *ngIf="!loading" class="content-text">{{ place.location }}</p>
+          <h4>Description</h4>
+          <p *ngIf="!loading" class="content-text">{{ place.description }}</p>
+          <h4>Author Comment</h4>
+          <p *ngIf="!loading" class="content-text">{{ place.authorComment }}</p>
+          <button class="btn btn-outline-success disabled">Favorite this place</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card">
+          <h2 class="card-header">Author</h2>
+          <div class="card-body">
+            <h4 class="card-title">Username</h4>
+            <p class="card-text" *ngIf="!loading">{{ place.author.username }}</p>
+            <h4 class="card-title">E-mail</h4>
+            <p class="card-text" *ngIf="!loading">{{ place.author.email }}</p>
+            <a class="btn btn-primary stretched-link" [routerLink]="['/profile', place.author.id]" *ngIf="!loading">
+              See Profile
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

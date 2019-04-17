@@ -32,6 +32,8 @@ export class SettingComponent implements OnInit {
 
     this.userService.getCurrent().subscribe(user => {
       this.user = user;
+    }, err => {
+      console.log(err)
     });
   }
 
@@ -54,8 +56,8 @@ export class SettingComponent implements OnInit {
           this.alertService.success('Update successful');
           this.loading = false;
         },
-        error => {
-          this.alertService.error(error);
+        err => {
+          this.alertService.error(err);
           this.loading = false;
         }
       );
@@ -69,12 +71,12 @@ export class SettingComponent implements OnInit {
           this.authenticationService.logout();
           this._router.navigate(['/login']);
         },
-        error => {
-          this.alertService.error(error);
+        err => {
+          this.alertService.error(err);
           this.loading = false;
         }
       );
-      
+
     }
   }
 

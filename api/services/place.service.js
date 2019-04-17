@@ -15,7 +15,7 @@ async function getAll() {
 }
 
 async function getById(id) {
-	return await Place.findById(id).populate({ path: 'author' });
+	return await Place.findById(id).populate({ path: 'author', select: 'email username id' });
 }
 
 async function create(param) {
@@ -38,5 +38,5 @@ async function _delete(id) {
 
 async function getAllByUserId(userid) {
 	return await Place
-		.where('author', userid).populate({ path: 'author' });
+		.where('author', userid).populate({ path: 'author', select: 'email username id' });
 }

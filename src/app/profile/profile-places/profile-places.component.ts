@@ -23,6 +23,8 @@ export class ProfilePlacesComponent implements OnInit {
       data => {
         this.user = data.profile;
         this.placeListConfig.filters.author = this.user.id;
+      }, err => {
+        console.log(err)
       }
     );
   }

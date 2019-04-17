@@ -12,7 +12,7 @@ import { AuthenticationService } from '../../core/services';
 export class NavbarComponent implements OnInit {
   currentUser: User;
   constructor(private _router: Router, private authenticationService: AuthenticationService) {
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x, err => console.log(err));
   }
 
   ngOnInit() { }

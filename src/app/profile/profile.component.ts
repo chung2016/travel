@@ -19,21 +19,16 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private authenticationService: AuthenticationService
   ) {
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x, err => console.log(err));
   }
 
   ngOnInit() {
     this.route.data.pipe(
       concatMap((data: { profile: Profile }) => {
         this.profile = data.profile;
-        this.isCurrentUser = (this.authenticationService.currentUserValue.id === this.profile.id);
+        this.isCurrentUser = (this.authenticationService.currentUserValue._id === this.profile.id);
         this.currentUser = this.authenticationService.currentUserValue;
-        return this.userService.getCurrent().pipe(tap(
-          // (userData: User) => {
-          //   this.currentUser = userData;
-          //   this.isCurrentUser = (this.currentUser.id === this.profile.id);
-          // }
-        ));
+        return this.userService.getCurrent().pipe(tap());
       })
     ).subscribe();
   }

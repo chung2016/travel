@@ -19,6 +19,8 @@ export class AppComponent {
   constructor(private _loadingBar: SlimLoadingBarService, private _router: Router) {
     this._router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
+    }, err => {
+      console.log(err);
     });
   }
 

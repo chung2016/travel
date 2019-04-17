@@ -18,6 +18,8 @@ export class AlertService {
           this.subject.next();
         }
       }
+    }, err => {
+      console.log(err)
     });
   }
 

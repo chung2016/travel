@@ -23,5 +23,9 @@ export class PlaceService {
   getByUserId(userid: number) {
     return this.http.get(`${this.uri}/user/${userid}`);
   }
+
+  getById(id: number) {
+    return this.http.get<Place>(`${this.uri}/${id}`);
+  }
   
 }

@@ -34,7 +34,7 @@ export class PlaceCreateComponent implements OnInit {
       description: [''],
       authorComment: [''],
     });
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x, err => console.log(err));
   }
 
   get f() { return this.createPlaceForm.controls; }
@@ -59,8 +59,8 @@ export class PlaceCreateComponent implements OnInit {
           this.router.navigate(['/place/'+ this.data._id]);
           this.loading = false;
         },
-        error => {
-          this.alertService.error(error);
+        err => {
+          this.alertService.error(err);
           this.loading = false;
         });
   }

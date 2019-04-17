@@ -1,4 +1,4 @@
-import { User } from './user';
+import { Profile } from './profile';
 
 export interface Place {
     id: number;
@@ -6,7 +6,7 @@ export interface Place {
     location: string;
     description: string;
     authorComment: string;
-    author: User;
+    author: Profile;
     createdAt: string;
     updatedAt: string;
 }
