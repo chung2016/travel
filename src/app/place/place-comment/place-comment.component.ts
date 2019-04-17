@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comment, User } from '../../core/models';
-import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/services';
 @Component({
   selector: 'app-place-comment',
@@ -13,7 +12,6 @@ export class PlaceCommentComponent implements OnInit {
 
   canModify: boolean = false;
   currentUser: User;
-  private subscription: Subscription;
   constructor(
     private authenticationService: AuthenticationService
   ) { }

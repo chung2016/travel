@@ -11,6 +11,11 @@
           <p *ngIf="!loading" class="content-text">{{ place.description }}</p>
           <h4>Author Comment</h4>
           <p *ngIf="!loading" class="content-text">{{ place.authorComment }}</p>
+
+          <div class="author-control btn-group" *ngIf="isAuthorPlace">
+            <a [routerLink]="[ '/place/edit', place.id ]" class="btn btn-success">Edit</a>
+            <button class="btn btn-danger" (click)="deletePlace()">Delete</button>
+          </div>
         </div>
         <div class="place-post-comment">
           <div *ngIf="!currentUser" class="comment-auth-message"> <a routerLink="/login">Login</a> or <a
@@ -19,9 +24,6 @@
             <div class="card-block">
               <textarea name="" formControlName="message" class="form-control" [disabled]="formloading"
                 placeholder="Write a comment..." rows="3"></textarea>
-              <!-- <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
-                <div *ngIf="f.message.errors.required">Comment is required</div>
-              </div> -->
             </div>
             <div class="card-footer">
               <button class="btn btn-sm btn-info" type="submit" [disabled]="formloading||f.message.errors">

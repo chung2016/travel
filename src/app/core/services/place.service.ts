@@ -24,8 +24,15 @@ export class PlaceService {
     return this.http.get(`${this.uri}/user/${userid}`);
   }
 
+  update(place: Place) {
+    return this.http.put(`${this.uri}/${place.id}`, place);
+  }
+
   getById(id: number) {
     return this.http.get<Place>(`${this.uri}/${id}`);
   }
   
+  delete(id: number) {
+    return this.http.delete(`${this.uri}/${id}`);
+  }
 }

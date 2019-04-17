@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaceService, AuthenticationService } from 'src/app/core/services';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Place, Comment, User } from 'src/app/core/models';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -19,12 +19,15 @@ export class PlaceShowComponent implements OnInit {
   formloading = false;
   currentUser: User;
   newComment: Comment = {} as Comment;
+  isAuthorPlace = false;
+
   constructor(
     private route: ActivatedRoute,
     private placeService: PlaceService,
     private commentService: CommentService,
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -33,14 +36,13 @@ export class PlaceShowComponent implements OnInit {
     this.commentForm = this.formBuilder.group({
       message: ['', [Validators.required]],
     });
-
-
     this.placeService.getById(this.route.snapshot.params['id'])
       .subscribe(place => {
         this.place = place;
         this.getComment();
         this.loading = false;
         this.newComment.place = place;
+        this.isAuthorPlace = (this.currentUser._id === place.author.id); 
       }, err => {
         console.log(err);
         this.loading = false;
@@ -67,9 +69,9 @@ export class PlaceShowComponent implements OnInit {
       data => {
         this.comments.unshift(data);
         this.formloading = false;
-        
+
         console.log(this.commentForm.reset(''))
-      }, 
+      },
       err => {
         this.loading = false;
         console.log(err)
@@ -88,5 +90,20 @@ export class PlaceShowComponent implements OnInit {
           this.comments = this.comments.filter((item) => item !== comment);
         }
       );
+  }
+
+  deletePlace() {
+    if (confirm("Are you sure to delete ")) {
+      this.placeService.delete(this.place.id)
+        .subscribe(
+          data => {
+            this.router.navigate(['/']);
+            console.log(data);
+  
+          }, err => {
+            console.log(err)
+          }
+        );
+    }
   }
 }
