@@ -13,7 +13,8 @@ function jwt() {
 			'/api/v1/users/register',
 			{ url: /\/api\/v1\/profile\/*/, methods: ['GET'] },
 			{ url: /\/api\/v1\/places\/*/ , methods: ['GET'] },
-			{ url: /\/api\/v1\/comments\/*/ , methods:['GET'] }
+			{ url: /\/api\/v1\/comments\/*/ , methods:['GET'] },
+			'/api/v1/upload'
 		]
 	});
 }
