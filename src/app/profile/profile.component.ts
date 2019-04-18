@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Profile } from '../core/models';
-import { UserService, AuthenticationService } from '../core/services';
+import { UserService, AuthenticationService, ProfileService } from '../core/services';
 import { ActivatedRoute } from '@angular/router';
 import { concatMap ,  tap } from 'rxjs/operators';
 
@@ -10,13 +10,13 @@ import { concatMap ,  tap } from 'rxjs/operators';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  isCurrentUser: boolean;
+  isCurrentUser: boolean = false;
   currentUser: User;
   profile: Profile;
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService,
+    private profileService: ProfileService,
     private authenticationService: AuthenticationService
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x, err => console.log(err));
@@ -26,9 +26,11 @@ export class ProfileComponent implements OnInit {
     this.route.data.pipe(
       concatMap((data: { profile: Profile }) => {
         this.profile = data.profile;
-        this.isCurrentUser = (this.authenticationService.currentUserValue._id === this.profile.id);
+        if (this.currentUser) {
+          this.isCurrentUser = (this.authenticationService.currentUserValue._id === this.profile.id);
+        }
         this.currentUser = this.authenticationService.currentUserValue;
-        return this.userService.getCurrent().pipe(tap());
+        return this.profileService.getById(this.profile.id).pipe(tap());
       })
     ).subscribe();
   }

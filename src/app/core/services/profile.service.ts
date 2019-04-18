@@ -12,6 +12,6 @@ export class ProfileService {
   constructor(private http: HttpClient) { }
 
   getById(id: Number) {
-    return this.http.get(`${this.uri}/${id}`);
+    return this.http.get<Profile>(`${this.uri}/${id}`);
   }
 }

@@ -42,7 +42,9 @@ export class PlaceShowComponent implements OnInit {
         this.getComment();
         this.loading = false;
         this.newComment.place = place;
-        this.isAuthorPlace = (this.currentUser._id === place.author.id); 
+        if (this.currentUser) {
+          this.isAuthorPlace = (this.currentUser._id === place.author.id); 
+        }
       }, err => {
         console.log(err);
         this.loading = false;
