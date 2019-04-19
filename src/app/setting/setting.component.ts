@@ -3,6 +3,7 @@ import { AlertService, AuthenticationService, UserService } from '../core/servic
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { UploadService } from '../core/services/upload.service';
 
 @Component({
   selector: 'app-setting',
@@ -21,13 +22,15 @@ export class SettingComponent implements OnInit {
     private userService: UserService,
     private _router: Router,
     private authenticationService: AuthenticationService,
+    private uploadService: UploadService
   ) { }
 
   ngOnInit() {
     this.settingForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      image: ['']
     });
 
     this.userService.getCurrent().subscribe(user => {
@@ -39,6 +42,19 @@ export class SettingComponent implements OnInit {
 
   get f() {
     return this.settingForm.controls;
+  }
+
+  handleFileInput(files: FileList) {
+    this.loading = true;
+    this.uploadService.upload(files.item(0)).subscribe(
+      data => {
+        this.user.image = data.file;
+        this.loading = false;
+      }, err => {
+        this.alertService.error(err);
+        this.loading = false;
+      }
+    )
   }
 
   onSubmit() {

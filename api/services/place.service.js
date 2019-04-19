@@ -11,11 +11,12 @@ module.exports = {
 };
 
 async function getAll() {
-	return await Place.find().populate({ path: 'author' });
+	let places = await Place.find().populate({ path: 'author', select: 'email username id image' })
+	return places;
 }
 
 async function getById(id) {
-	return await Place.findById(id).populate({ path: 'author', select: 'email username id' });
+	return await Place.findById(id).populate({ path: 'author', select: 'email username id image' });
 }
 
 async function create(param) {
@@ -39,6 +40,6 @@ async function _delete(id) {
 async function getAllByUserId(userid) {
 	let places = await Place
 		.where('author', userid)
-		.populate({ path: 'author', select: 'email username id' });
+		.populate({ path: 'author', select: 'email username id image' });
 	return places;
 }

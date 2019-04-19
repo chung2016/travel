@@ -26,6 +26,7 @@ export class PlaceListComponent {
         .subscribe(places => {
           this.loading = false;
           this.places = places;
+          
         }, err => {
           console.log(err)
         });

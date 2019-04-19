@@ -23,10 +23,10 @@ async function _delete(id) {
 }
 
 async function getById(id) {
-    return await Comment.findById(id).populate({ path: 'user', select: 'username email id' });
+    return await Comment.findById(id).populate({ path: 'user', select: 'username email id image' });
 }
 
 
 async function getByPlaceId(placeid) {
-    return await Comment.where('place', placeid).populate({ path: 'user', select: 'username email id' });
+    return await Comment.where('place', placeid).populate({ path: 'user', select: 'username email id image' });
 }

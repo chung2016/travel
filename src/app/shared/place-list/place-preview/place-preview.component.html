@@ -1,7 +1,12 @@
 <div class="place-preview">
   <div class="place-info">
     <a class="author" [routerLink]="['/profile', place.author.id]" *ngIf="place.author">
-      Username: {{ place.author.username }}
+      <img class="place-info-image" src="{{ place.author.image }}" alt="User image" *ngIf="place.author.image">
+      <img class="place-info-image" src="../../assets/images/default-profile.png" alt="User image"
+        *ngIf="!place.author.image">
+      <span>
+        Username: {{ place.author.username }}
+      </span>
     </a>
     <span class="date">
       Publish At: {{ place.createdAt | date: 'longDate' }}

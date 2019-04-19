@@ -25,6 +25,9 @@ const schema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Place',
 	},
+	image: {
+		type: String,
+	},
 	createdAt: {
 		type: Date,
 		default: Date.now

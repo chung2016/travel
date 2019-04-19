@@ -1,10 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
+
+const googleStorage = require('@google-cloud/storage');
+
+const storage = googleStorage({
+    projectId: "travel-7c073",
+    keyFilename: "api/key-file-name.json"
+});
+const bucketName = "travel-7c073.appspot.com";
+const bucket = storage.bucket(bucketName);
+
 const format = require('util').format;
-const bucket = require("../_helpers/file-upload");
 const Multer = require('multer');
 const fileType = require('file-type');
+
 
 const accepted_extensions = ['jpg', 'png', 'gif'];
 
@@ -38,6 +48,8 @@ router.post('/', multer.single('file'), validate_format, (req, res, next) => {
         }).catch((error) => {
             next(error)
         });
+    } else {
+        throw 'file required';
     }
 });
 module.exports = router;
@@ -65,11 +77,20 @@ const uploadImageToStorage = (file) => {
 
         blobStream.on('finish', () => {
             // The public URL can be used to directly access the file via HTTP.
-            const url = format(`https://storage.googleapis.com/${bucket.name}/${fileUpload.name}`);
+            let uFile = storage
+                .bucket(bucketName)
+                .file(fileUpload.name)
+                .makePublic();
+            const url = format(createPublicFileURL(fileUpload.name));
             resolve(url);
 
         });
 
         blobStream.end(file.buffer);
     });
+}
+
+function createPublicFileURL(storageName) {
+    return `https://firebasestorage.googleapis.com/v0/b/${bucketName}/o/${encodeURIComponent(storageName)}?alt=media`;
+
 }

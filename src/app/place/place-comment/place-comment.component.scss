@@ -1,6 +1,15 @@
-.place-comment-block .card-text{
-    padding: 1rem;
+.place-comment-block .card-text {
+  padding: 1rem;
 }
-.delete-comment{
-    float: right;
+.delete-comment {
+  float: right;
+}
+.comment-author-image {
+  width: 30px;
+  height: 30px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  object-fit: contain;
+  border-radius: 50%;
+  background: gray;
 }

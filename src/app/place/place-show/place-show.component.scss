@@ -19,3 +19,13 @@
 .author-control{
   float: right;
 }
+
+.card-footer-image{
+  width: 30px;
+  height: 30px;
+  margin-left: .5rem;
+  margin-right: .5rem;
+  object-fit: contain;
+  border-radius: 50%;
+
+}
