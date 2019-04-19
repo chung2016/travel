@@ -69,6 +69,11 @@ export class SettingComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          
+          // updataCurr
+          this.authenticationService.update();
+          // updataCurr
+
           this.alertService.success('Update successful');
           this.loading = false;
         },

@@ -34,6 +34,21 @@ export class AuthenticationService {
       }));
   }
 
+
+
+  tmp: any;
+  update() {
+    this.tmp = JSON.parse(localStorage.getItem('currentUser'));
+    this.http.get(`${this.uri}/${this.tmp._id}`).subscribe(user => {
+      Object.assign(this.tmp, user);
+      localStorage.setItem('currentUser', JSON.stringify(this.tmp));
+      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+      this.currentUser = this.currentUserSubject.asObservable();
+    }, err => {
+      console.error(err)
+    });
+  }
+
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
