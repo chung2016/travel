@@ -11,6 +11,12 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="current-photo">Photo</label>
+          <img src="{{ place.photo }}" alt="place-photo" *ngIf="place.photo" class="place-photo">
+          <label for="photo">Update Photo</label>
+          <input type="file" name="photo" (change)="handleFileInput($event.target.files)">
+        </div>
+        <div class="form-group">
           <label for="location">Location</label>
           <input type="text" formControlName="location" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.location.errors }" [(ngModel)]="place.location" />
@@ -29,7 +35,8 @@
         <div class="form-group">
           <label for="authorComment">Comment</label>
           <textarea name="" formControlName="authorComment" class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.authorComment.errors }" [(ngModel)]="place.authorComment"></textarea>
+            [ngClass]="{ 'is-invalid': submitted && f.authorComment.errors }"
+            [(ngModel)]="place.authorComment"></textarea>
           <div *ngIf="submitted && f.authorComment.errors" class="invalid-feedback">
 
           </div>

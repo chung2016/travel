@@ -4,6 +4,7 @@ import { PlaceService } from 'src/app/core/services/place.service';
 import { AlertService, AuthenticationService } from 'src/app/core/services';
 import { Place, User } from 'src/app/core/models';
 import { Router } from '@angular/router';
+import { UploadService } from 'src/app/core/services/upload.service';
 
 @Component({
   selector: 'app-place-create',
@@ -25,6 +26,7 @@ export class PlaceCreateComponent implements OnInit {
     private placeService: PlaceService,
     private alertService: AlertService,
     private authenticationService: AuthenticationService,
+    private uploadService: UploadService,
   ) { }
 
   ngOnInit() {
@@ -63,6 +65,19 @@ export class PlaceCreateComponent implements OnInit {
           this.alertService.error(err);
           this.loading = false;
         });
+  }
+
+  handleFileInput(files: FileList) {
+    this.loading = true;
+    this.uploadService.upload(files.item(0)).subscribe(
+      data => {
+        this.place.photo = data.file;
+        this.loading = false;
+      }, err => {
+        this.alertService.error(err);
+        this.loading = false;
+      }
+    )
   }
 
   updatePlace(values: Object) {

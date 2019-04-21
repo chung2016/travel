@@ -10,6 +10,10 @@
   color: #bbb;
   vertical-align: middle;
 }
+
+.preview-link {
+  display: flex;
+}
 .preview-link:hover {
   text-decoration: inherit !important;
 }
@@ -23,7 +27,7 @@
   display: flex;
 }
 
-.place-info{
+.place-info {
   padding: 1rem 0;
 }
 
@@ -31,8 +35,28 @@
   font-size: 0.5rem;
 }
 
-.place-info-image{
+.place-info-image {
   width: 30px;
   height: 30px;
   border-radius: 50%;
+}
+
+.place-pre-photo {
+  width: 100px;
+  height: 100px;
+  margin-right: 30px;
+  background: #c7c7c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.place-pre-photo > span {
+  color: #000;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.place-pre-photo > img {
+  object-fit: contain;
 }

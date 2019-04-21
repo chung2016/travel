@@ -5,6 +5,9 @@ const schema = new Schema({
 		type: String,
 		required: true,
 	},
+	photo: {
+		type: String,
+	},
 	location: {
 		type: String,
 		required: true,

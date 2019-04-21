@@ -3,6 +3,7 @@ import { Place, User } from 'src/app/core/models';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlaceService, AuthenticationService, AlertService } from 'src/app/core/services';
+import { UploadService } from 'src/app/core/services/upload.service';
 
 @Component({
   selector: 'app-place-edit',
@@ -22,7 +23,8 @@ export class PlaceEditComponent implements OnInit {
     private placeService: PlaceService,
     private authenticationService: AuthenticationService,
     private alertService: AlertService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private uploadService: UploadService,
   ) { }
 
   ngOnInit() {
@@ -69,6 +71,19 @@ export class PlaceEditComponent implements OnInit {
 
   updatePlace(values: Object) {
     Object.assign(this.place, values);
+  }
+
+  handleFileInput(files: FileList) {
+    this.loading = true;
+    this.uploadService.upload(files.item(0)).subscribe(
+      data => {
+        this.place.photo = data.file;
+        this.loading = false;
+      }, err => {
+        this.alertService.error(err);
+        this.loading = false;
+      }
+    )
   }
 
 }
