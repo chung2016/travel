@@ -9,12 +9,13 @@ function jwt() {
 	return expressJwt({ secret, isRevoked }).unless({
 		path: [
 			// public routes that don't require authentication
+			'/api/v1/third/webcams',
 			'/api/v1/users/authenticate',
 			'/api/v1/users/register',
 			{ url: /\/api\/v1\/profile\/*/, methods: ['GET'] },
 			{ url: /\/api\/v1\/places\/*/ , methods: ['GET'] },
 			{ url: /\/api\/v1\/comments\/*/ , methods:['GET'] },
-			'/api/v1/upload'
+			'/api/v1/upload',
 		]
 	});
 }

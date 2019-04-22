@@ -33,6 +33,10 @@ const schema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+	webcamsId: {
+		type: Number,
+		unique: true,
+	}
 });
 
 schema.pre('save', function (next) {
