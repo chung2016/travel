@@ -46,12 +46,14 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="card" *ngIf="place">
+        <div class="card author-content" *ngIf="place">
           <h2 class="card-header">Author</h2>
-          <img class="card-img-top" src="{{ place.author.image }}" alt="User image" style="width:100%"
-            *ngIf="place.author.image">
-          <img class="card-img-top" src="../../assets/images/default-profile.png" alt="User image" style="width:100%"
-            *ngIf="!place.author.image">
+          <div class="author-image">
+            <img class="card-img-top author-image" src="{{ place.author.image }}" alt="User image"
+              *ngIf="place.author.image">
+            <img class="card-img-top author-image" src="../../assets/images/default-profile.png" alt="User image"
+              *ngIf="!place.author.image">
+          </div>
           <div class="card-body">
             <h4 class="card-title">Username</h4>
             <p class="card-text" *ngIf="!loading">{{ place.author.username }}</p>

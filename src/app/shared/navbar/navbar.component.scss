@@ -5,3 +5,17 @@
 .nav-link {
   cursor: pointer;
 }
+
+.bg-light {
+  background-color: #17a2b8 !important;
+}
+
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-brand {
+  color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+  color: #000;
+}

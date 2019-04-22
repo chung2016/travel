@@ -10,12 +10,12 @@
       Publish At: {{ place.createdAt | date: 'longDate' }}
     </span>
   </div>
-  <a [routerLink]="['/place', place.id]" class="preview-link">
-    <div class="place-pre-photo">
+  <a [routerLink]="['/place', place.id]" class="preview-link row">
+    <div class="place-pre-photo col-md-5">
       <span *ngIf="!place.photo">No photo</span>
-      <img src="{{ place.photo }}" alt="" style="width: 100%;" *ngIf="place.photo">
+      <img src="{{ place.photo }}" alt="" *ngIf="place.photo">
     </div>
-    <div class="place-pre-contect">
+    <div class="place-pre-contect col-md-7">
       <h1>Name: {{ place.name }}</h1>
       <p>Location: {{ place.location }}</p>
       <span>Read more...</span>
