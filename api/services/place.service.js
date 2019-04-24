@@ -11,7 +11,7 @@ module.exports = {
 };
 
 async function getAll() {
-	let places = await Place.find().populate({ path: 'author', select: 'email username id image' })
+	let places = await Place.find().populate({ path: 'author', select: 'email username id image' }).sort({createdAt: 'descending'})
 	return places;
 }
 
@@ -40,6 +40,7 @@ async function _delete(id) {
 async function getAllByUserId(userid) {
 	let places = await Place
 		.where('author', userid)
-		.populate({ path: 'author', select: 'email username id image' });
+		.populate({ path: 'author', select: 'email username id image' })
+		.sort({createdAt: 'descending'});
 	return places;
 }
