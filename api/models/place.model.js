@@ -36,6 +36,7 @@ const schema = new Schema({
 	webcamsId: {
 		type: Number,
 		unique: true,
+		sparse: true
 	}
 });
 
