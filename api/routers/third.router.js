@@ -18,7 +18,7 @@ router.get('/webcams', (req, res, next) => {
                     name: webcamsPlace.title,
                     photo: webcamsPlace.image.current.toenail,
                     location: webcamsPlace.location.region,
-                    author: '5cbd91d6df61981c04660738',
+                    author: '5cc2666e1382b91910ac399d',
                 }
                 placeService.create(place)
             });

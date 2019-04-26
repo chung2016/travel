@@ -2,6 +2,8 @@ const config = require('../config.json');
 const jwt = require('jsonwebtoken');
 const db = require('../_helpers/db');
 const User = db.User;
+const Comment = db.Comment;
+const Place = db.Place;
 
 module.exports = {
 	authenticate,
@@ -76,5 +78,7 @@ async function update(id, userParam) {
 }
 
 async function _delete(id) {
-	await User.findOneAndDelete(id);
+	Comment.find({"user": id}).remove().exec();
+	Place.find({"author": id}).remove().exec();
+	await User.findByIdAndRemove(id);
 }

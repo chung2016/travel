@@ -19,6 +19,7 @@ async function create(param) {
 }
 
 async function _delete(id) {
+
     await Comment.findOneAndDelete(id);
 }
 

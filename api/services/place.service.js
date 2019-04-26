@@ -1,5 +1,6 @@
 const db = require('../_helpers/db');
 const Place = db.Place;
+const Comment = db.Comment;
 
 module.exports = {
 	getAll,
@@ -11,7 +12,7 @@ module.exports = {
 };
 
 async function getAll() {
-	let places = await Place.find().populate({ path: 'author', select: 'email username id image' }).sort({createdAt: 'descending'})
+	let places = await Place.find().populate({ path: 'author', select: 'email username id image' }).sort({ createdAt: 'descending' })
 	return places;
 }
 
@@ -34,13 +35,14 @@ async function update(id, param) {
 }
 
 async function _delete(id) {
-	await Place.findOneAndDelete(id);
+	Comment.find({"place": id}).remove().exec();
+	await Place.findByIdAndRemove(id);
 }
 
 async function getAllByUserId(userid) {
 	let places = await Place
 		.where('author', userid)
 		.populate({ path: 'author', select: 'email username id image' })
-		.sort({createdAt: 'descending'});
+		.sort({ createdAt: 'descending' });
 	return places;
 }
