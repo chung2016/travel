@@ -12,6 +12,22 @@ const schema = new Schema({
 		type: String,
 		required: true,
 	},
+	type: {
+		type: String,
+		enum: [
+			'Shopping',
+			'Relax',
+			'Deluxe',
+			'Poor Travel',
+			'Photography',
+			'Historical',
+			'Food Hunter',
+			'Whatever',
+			'Tour Group',
+			'Adventurer',
+		],
+		required:true,
+	},
 	description: {
 		type: String,
 	},
@@ -22,8 +38,8 @@ const schema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User',
 	},
-	comments: [{ 
-		type: mongoose.Schema.Types.ObjectId, ref: 'Comment' 
+	comments: [{
+		type: mongoose.Schema.Types.ObjectId, ref: 'Comment'
 	}],
 	createdAt: {
 		type: Date,

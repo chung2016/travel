@@ -8,6 +8,8 @@
           <p *ngIf="!loading" class="content-text">{{ place.name }}</p>
           <h4>Location</h4>
           <p *ngIf="!loading" class="content-text">{{ place.location }}</p>
+          <h4>Type</h4>
+          <p *ngIf="!loading&&place.type" class="content-text">{{ place.type }}</p>
           <h4>Description</h4>
           <p *ngIf="!loading" class="content-text">{{ place.description }}</p>
           <h4>Author Comment</h4>

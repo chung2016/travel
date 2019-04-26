@@ -13,7 +13,8 @@
         </div>
         <div class="form-group">
           <label for="photo">Photo</label>
-          <input type="file" name="file" (change)="handleFileInput($event.target.files)" class="form-control-file" *ngIf="!place.photo">
+          <input type="file" name="file" (change)="handleFileInput($event.target.files)" class="form-control-file"
+            *ngIf="!place.photo">
           <img src="{{ place.photo }}" alt="place-photo" *ngIf="place.photo" class="place-photo">
         </div>
         <div class="form-group">
@@ -24,6 +25,21 @@
             <div *ngIf="f.location.errors.required">Location is required</div>
           </div>
         </div>
+        <div class="form-group">
+            <label for="type">Type</label>
+            <select class='form-control' name="type">
+              <option value='Shopping'>Shopping</option>
+              <option value='Relax'>Relax</option>
+              <option value='Deluxe'>Deluxe</option>
+              <option value='Poor Travel'>Poor Travel</option>
+              <option value='Photography'>Photography</option>
+              <option value='Historical'>Historical</option>
+              <option value='Food Hunter'>Food Hunter</option>
+              <option value='Whatever'>Whatever</option>
+              <option value='Tour Group'>Tour Group</option>
+              <option value='Adventurer'>Adventurer</option>
+            </select>
+          </div>
         <div class="form-group">
           <label for="description">Description</label>
           <textarea name="" formControlName="description" class="form-control"

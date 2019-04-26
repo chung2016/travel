@@ -37,6 +37,7 @@ export class PlaceEditComponent implements OnInit {
     this.editPlaceForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       location: ['', Validators.required],
+      type: ['Relax'],
       description: [''],
       authorComment: [''],
     });

@@ -25,6 +25,21 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="type">Type</label>
+          <select class='form-control' name="type" formControlName="type"  [(ngModel)]="place.type">
+            <option value='Shopping'>Shopping</option>
+            <option value='Relax'>Relax</option>
+            <option value='Deluxe'>Deluxe</option>
+            <option value='Poor Travel'>Poor Travel</option>
+            <option value='Photography'>Photography</option>
+            <option value='Historical'>Historical</option>
+            <option value='Food Hunter'>Food Hunter</option>
+            <option value='Whatever'>Whatever</option>
+            <option value='Tour Group'>Tour Group</option>
+            <option value='Adventurer'>Adventurer</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="description">Description</label>
           <textarea name="" formControlName="description" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.description.errors }" [(ngModel)]="place.description"></textarea>

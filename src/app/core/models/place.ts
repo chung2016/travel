@@ -5,6 +5,7 @@ export interface Place {
     name: string;
     photo: string;
     location: string;
+    type: string;
     description: string;
     authorComment: string;
     author: Profile;

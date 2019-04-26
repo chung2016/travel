@@ -33,6 +33,7 @@ export class PlaceCreateComponent implements OnInit {
     this.createPlaceForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       location: ['', Validators.required],
+      type: ['Relax'],
       description: [''],
       authorComment: [''],
     });
