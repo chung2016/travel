@@ -21,6 +21,11 @@ const schema = new Schema({
 		type: String,
 		required: true
 	},
+	gender: {
+		type: String,
+		enum: ['Male', 'Female'],
+		required: true,
+	},
 	place: {
 		type: Schema.Types.ObjectId,
 		ref: 'Place',

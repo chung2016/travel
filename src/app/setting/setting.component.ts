@@ -30,7 +30,8 @@ export class SettingComponent implements OnInit {
       username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      image: ['']
+      image: [''],
+      gender: ['Male']
     });
 
     this.userService.getCurrent().subscribe(user => {

@@ -59,6 +59,8 @@
             <p class="card-text" *ngIf="!loading">{{ place.author.username }}</p>
             <h4 class="card-title">E-mail</h4>
             <p class="card-text" *ngIf="!loading">{{ place.author.email }}</p>
+            <h4 class="card-title">Gender</h4>
+            <p class="card-text" *ngIf="!loading">{{ place.author.gender }}</p>
             <a class="btn btn-primary stretched-link" [routerLink]="['/profile', place.author.id]" *ngIf="!loading">
               See Profile
             </a>
