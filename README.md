@@ -1,5 +1,16 @@
 # 304cem-assigment
 
+## Features
+- User Login
+- User Register
+- Get User Profile
+- Update User Profile
+- Delete User
+- Create, Update, List, Delete, Retrieve Place
+- Create, List, Delete Comment
+
+
+
 ## Frontend - Angular
 
 - `ng serve -o` to start frontend, the frontend will automated show in you default browser
