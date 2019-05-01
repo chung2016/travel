@@ -42,6 +42,7 @@ describe('User Model Testing', function () {
 			'email': 'test@example.com',
 			'username': 'test',
 			'password': 'test',
+			'gender': 'Male',
 		});
 		user.validate(function (err) {
 			expect(err).to.not.exist;

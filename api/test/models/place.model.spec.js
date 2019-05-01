@@ -51,9 +51,11 @@ describe('Place Model Testing', function () {
             'name': 'test name',
             'location': 'test location',
             'description': 'test description',
+            'type': "Shopping",
             'authorComment': 'test author comment',
         })
         place.validate(function (err) {
+            console.log(err)
             expect(err).to.not.exist;
             done();
         });
