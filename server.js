@@ -24,7 +24,6 @@ app.use("/api/v1/profile", require("./api/routers/profile.router"));
 app.use("/api/v1/places", require("./api/routers/place.router"));
 app.use("/api/v1/comments", require("./api/routers/comment.router"));
 app.use("/api/v1/upload", require("./api/routers/upload.router"));
-app.use("/api/v1/third", require("./api/routers/third.router"));
 app.get('/*', function (req, res) {
 	res.sendFile(path.join(`${__dirname}/dist${distPath}/index.html`));
 });

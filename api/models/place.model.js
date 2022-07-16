@@ -49,9 +49,6 @@ const schema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	webcamsId: {
-		type: Number,
-	}
 });
 
 schema.pre('save', function (next) {
