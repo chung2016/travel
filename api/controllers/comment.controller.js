@@ -1,36 +1,42 @@
-const commentService = require('../services/comment.service');
+const commentService = require("../services/comment.service");
 
 module.exports = {
-    create,
-    update,
-    delete: _delete,
-    getByPlaceId,
+  create,
+  update,
+  delete: _delete,
+  getByPlaceId,
 };
 
-function create(req, res, next) {
-    commentService
-        .create(req.body)
-        .then(comment => res.json(comment))
-        .catch(err => next(err));
+async function create(req, res, next) {
+  try {
+    const comment = await commentService.create(req.body);
+    return res.json(comment);
+  } catch (err) {
+    return next(err);
+  }
 }
 
 function update(req, res, next) {
-    commentService
-        .update(req.params.id, req.body)
-        .then((comment) => res.json(comment))
-        .catch(err => next(err));
+  return commentService
+    .update(req.params.id, req.body)
+    .then((comment) => res.json(comment))
+    .catch((err) => next(err));
 }
 
-function _delete(req, res,next) {
-    commentService
-        .delete(req.params.id)
-        .then(() => res.json({}))
-        .catch(err => next(err));
+async function _delete(req, res, next) {
+  try {
+    await commentService.delete(req.params.id);
+    return res.json({});
+  } catch (err) {
+    return next(err);
+  }
 }
 
-function getByPlaceId(req, res, next) {
-    commentService
-        .getByPlaceId(req.params.placeid)
-        .then(comments => res.json(comments))
-        .catch(err => next(err));
+async function getByPlaceId(req, res, next) {
+  try {
+    const comments = await commentService.getByPlaceId(req.params.placeid);
+    return res.json(comments);
+  } catch (err) {
+    return next(err);
+  }
 }
