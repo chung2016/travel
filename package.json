@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "nyc --reporter=html ./node_modules/mocha/bin/mocha ./api/test --recursive",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod --output-path dist"
   },
   "keywords": [],
   "author": "",
