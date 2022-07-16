@@ -41,18 +41,22 @@ async function getAll(req, res, next) {
   }
 }
 
-function getCurrent(req, res, next) {
-  return userService
-    .getById(req.user.sub)
-    .then((user) => (user ? res.json(user) : res.sendStatus(404)))
-    .catch((err) => next(err));
+async function getCurrent(req, res, next) {
+  try {
+    const user = await userService.getById(req.user.sub);
+    return user ? res.json(user) : res.sendStatus(404);
+  } catch (err) {
+    return next(err);
+  }
 }
 
-function getById(req, res, next) {
-  return userService
-    .getById(req.params.id)
-    .then((user) => (user ? res.json(user) : res.sendStatus(404)))
-    .catch((err) => next(err));
+async function getById(req, res, next) {
+  try {
+    const user = await userService.getById(req.params.id);
+    return user ? res.json(user) : res.sendStatus(404);
+  } catch (err) {
+    return next(err);
+  }
 }
 
 async function update(req, res, next) {

@@ -16,11 +16,13 @@ async function create(req, res, next) {
   }
 }
 
-function update(req, res, next) {
-  return commentService
-    .update(req.params.id, req.body)
-    .then((comment) => res.json(comment))
-    .catch((err) => next(err));
+async function update(req, res, next) {
+  try {
+    const comment = await commentService.update(req.params.id, req.body);
+    return res.json(comment);
+  } catch (err) {
+    next(err);
+  }
 }
 
 async function _delete(req, res, next) {
