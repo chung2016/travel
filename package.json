@@ -5,12 +5,12 @@
   "main": "server.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "nyc --reporter=html ./node_modules/mocha/bin/mocha ./api/test --recursive",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot --prod --output-path dist"
+    "postinstall": "ng build"
   },
   "keywords": [],
   "author": "",

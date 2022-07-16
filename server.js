@@ -10,9 +10,8 @@ const path = require("path");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-const distPath = process.env.NODE_ENV === 'production' ? '' : '/assignment';
 
-app.use(express.static(`${__dirname}/dist${distPath}`));
+app.use(express.static(`${__dirname}/dist`));
 app.use(cors());
 
 // use JWT auth to secure the api
@@ -25,7 +24,7 @@ app.use("/api/v1/places", require("./api/routers/place.router"));
 app.use("/api/v1/comments", require("./api/routers/comment.router"));
 app.use("/api/v1/upload", require("./api/routers/upload.router"));
 app.get('/*', function (req, res) {
-	res.sendFile(path.join(`${__dirname}/dist${distPath}/index.html`));
+	res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 // global error handler
