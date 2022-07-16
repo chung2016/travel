@@ -7,7 +7,6 @@
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
-    "test": "nyc --reporter=html ./node_modules/mocha/bin/mocha ./api/test --recursive",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ng build"
@@ -63,7 +62,6 @@
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "mocha": "^6.0.2",
-    "nyc": "^13.3.0",
     "protractor": "~7.0.0",
     "sinon": "^7.3.1",
     "ts-node": "~7.0.0",
