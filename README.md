@@ -21,7 +21,6 @@
 - [jQuery](https://github.com/jquery/jquery)
 - [bootstrap4](https://github.com/twbs/bootstrap)
 - [Font Awesome v4.7.0](http://fontawesome.io)
-- [ng2-slim-loading-bar](https://github.com/akserg/ng2-slim-loading-bar)
 - [angular-cli](https://github.com/angular/angular-cli)
 
 ### Automated testing Dependencies

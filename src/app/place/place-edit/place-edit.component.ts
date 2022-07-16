@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Place, User } from 'src/app/core/models';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlaceService, AuthenticationService, AlertService } from 'src/app/core/services';
 import { UploadService } from 'src/app/core/services/upload.service';
@@ -12,13 +12,13 @@ import { UploadService } from 'src/app/core/services/upload.service';
 })
 export class PlaceEditComponent implements OnInit {
   place: Place = {} as Place;
-  editPlaceForm: FormGroup;
+  editPlaceForm: UntypedFormGroup;
   loading = false;
   submitted = false;
   currentUser: User;
   data: any = {};
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private placeService: PlaceService,
     private authenticationService: AuthenticationService,

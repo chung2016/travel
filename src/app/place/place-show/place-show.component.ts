@@ -3,7 +3,7 @@ import { PlaceService, AuthenticationService } from 'src/app/core/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Place, Comment, User } from 'src/app/core/models';
 import { CommentService } from 'src/app/core/services/comment.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-place-show',
@@ -14,7 +14,7 @@ export class PlaceShowComponent implements OnInit {
   place: Place;
   loading = true;
   comments: Comment[];
-  commentForm: FormGroup;
+  commentForm: UntypedFormGroup;
   submitted = false;
   formloading = false;
   currentUser: User;
@@ -25,7 +25,7 @@ export class PlaceShowComponent implements OnInit {
     private route: ActivatedRoute,
     private placeService: PlaceService,
     private commentService: CommentService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private authenticationService: AuthenticationService,
     private router: Router
   ) { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { PlaceService } from 'src/app/core/services/place.service';
 import { AlertService, AuthenticationService } from 'src/app/core/services';
 import { Place, User } from 'src/app/core/models';
@@ -15,13 +15,13 @@ export class PlaceCreateComponent implements OnInit {
   place: Place = {} as Place;
 
   data : any = {};
-  createPlaceForm: FormGroup;
+  createPlaceForm: UntypedFormGroup;
   loading = false;
   submitted = false;
   currentUser: User;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private router: Router,
     private placeService: PlaceService,
     private alertService: AlertService,

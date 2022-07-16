@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService, AuthenticationService, UserService } from '../core/services';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { UploadService } from '../core/services/upload.service';
@@ -12,12 +12,12 @@ import { UploadService } from '../core/services/upload.service';
 })
 export class SettingComponent implements OnInit {
   user: any = {};
-  settingForm: FormGroup;
+  settingForm: UntypedFormGroup;
   loading = false;
   submitted = false;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private alertService: AlertService,
     private userService: UserService,
     private _router: Router,
