@@ -1,4 +1,3 @@
-const config = require('../config.json');
 const jwt = require('jsonwebtoken');
 const db = require('../_helpers/db');
 const User = db.User;
@@ -19,7 +18,7 @@ async function authenticate({ email, password }) {
 	const user = await User.findOne(criteria);
 	if (user && user.comparePassword(password)) {
 		const { password, ...userWithoutPassword } = user.toObject();
-		const token = jwt.sign({ sub: user.id }, config.secret);
+		const token = jwt.sign({ sub: user.id }, process.env.JWT_SECRET);
 		return {
 			...userWithoutPassword,
 			token

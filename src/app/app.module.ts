@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { JwtInterceptor, ErrorInterceptor } from './core/helpers';
 
 import { HomeComponent } from './home/home.component';
@@ -31,7 +30,6 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SlimLoadingBarModule,
     ReactiveFormsModule,
     HttpClientModule,
     // custom

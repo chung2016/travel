@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, },
   {
     path: 'profile',
-    loadChildren: './profile/profile.module#ProfileModule'
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
   },
   //auth
   { path: 'setting', component: SettingComponent, canActivate: [AuthGuard] },

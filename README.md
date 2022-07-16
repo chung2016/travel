@@ -1,4 +1,4 @@
-# 304cem-assigment
+# Travel
 
 ## Features
 - User Login
@@ -21,7 +21,6 @@
 - [jQuery](https://github.com/jquery/jquery)
 - [bootstrap4](https://github.com/twbs/bootstrap)
 - [Font Awesome v4.7.0](http://fontawesome.io)
-- [ng2-slim-loading-bar](https://github.com/akserg/ng2-slim-loading-bar)
 - [angular-cli](https://github.com/angular/angular-cli)
 
 ### Automated testing Dependencies
@@ -51,7 +50,7 @@
 
 - Clone this repo
 - `npm install` to install all required dependencies
-- Set MongoDB info `api/config.json`
+- `cp .env.example .env` and set MongoDB
 - `node app.js` to start the local server
 
 This project creates the following API:

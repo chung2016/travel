@@ -1,11 +1,10 @@
 const expressJwt = require('express-jwt');
-const config = require('../config.json');
 const userService = require('../services/user.service');
 
 module.exports = jwt;
 
 function jwt() {
-	const secret = config.secret;
+	const secret = process.env.JWT_SECRET;
 	return expressJwt({ secret, isRevoked }).unless({
 		path: [
 			// public routes that don't require authentication
@@ -15,6 +14,7 @@ function jwt() {
 			{ url: /\/api\/v1\/profile\/*/, methods: ['GET'] },
 			{ url: /\/api\/v1\/places\/*/ , methods: ['GET'] },
 			{ url: /\/api\/v1\/comments\/*/ , methods:['GET'] },
+			{ url: /\/api\/v1\/upload\/*/ , methods:['GET'] },
 			'/api/v1/upload',
 		]
 	});

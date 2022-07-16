@@ -1,51 +1,64 @@
-const placeService = require('../services/place.service');
+const placeService = require("../services/place.service");
 
 module.exports = {
-    getAll,
-    getById,
-    create,
-    update,
-    delete: _delete,
-    getAllByUserId
+  getAll,
+  getById,
+  create,
+  update,
+  delete: _delete,
+  getAllByUserId,
 };
 
-function getAll(req, res, next) {
-    placeService
-        .getAll()
-        .then(places => res.json(places));
+async function getAll(req, res, next) {
+  try {
+    const places = await placeService.getAll();
+    return res.json(places);
+  } catch (error) {
+    next(error);
+  }
 }
 
-function getById(req, res, next) {
-    placeService
-        .getById(req.params.id)
-        .then(place => (place ? res.json(place) : res.sendStatus(404)))
-        .catch(err => next(err));
+async function getById(req, res, next) {
+  try {
+    const place = await placeService.getById(req.params.id);
+    return place ? res.json(place) : res.sendStatus(404);
+  } catch (err) {
+    return next(err);
+  }
 }
 
-function create(req, res, next) {
-    placeService
-        .create(req.body)
-        .then((place) => res.json(place))
-        .catch(err => next(err));
+async function create(req, res, next) {
+  try {
+    const place = await placeService.create(req.body);
+    return res.json(place);
+  } catch (err) {
+    return next(err);
+  }
 }
 
-function update(req, res, next) {
-    placeService
-        .update(req.params.id, req.body)
-        .then((place) => res.json(place))
-        .catch(err => next(err));
+async function update(req, res, next) {
+  try {
+    const place = await placeService.update(req.params.id, req.body);
+    return res.json(place);
+  } catch (err) {
+    return next(err);
+  }
 }
 
-function _delete(req, res, next) {
-    placeService
-        .delete(req.params.id)
-        .then(() => res.json({}))
-        .catch(err => next(err));
+async function _delete(req, res, next) {
+  try {
+    await placeService.delete(req.params.id);
+    return res.json({});
+  } catch (err) {
+    return next(err);
+  }
 }
 
-function getAllByUserId(req, res, next) {
-    placeService
-        .getAllByUserId(req.params.userid)
-        .then(places => res.json(places))
-        .catch(err => next(err));
+async function getAllByUserId(req, res, next) {
+  try {
+    const places = await placeService.getAllByUserId(req.params.userid);
+    return res.json(places);
+  } catch (err) {
+    return next(err);
+  }
 }
