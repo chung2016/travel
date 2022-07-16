@@ -1,5 +1,5 @@
 {
-  "name": "304cem-assigment",
+  "name": "travel",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -11,17 +11,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/187109370/304cem-assigment.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/187109370/304cem-assigment/issues"
-  },
-  "homepage": "https://github.com/187109370/304cem-assigment#readme",
   "private": true,
   "dependencies": {
     "@angular/animations": "^14.0.6",
