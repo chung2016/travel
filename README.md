@@ -50,7 +50,7 @@
 
 - Clone this repo
 - `npm install` to install all required dependencies
-- Set MongoDB info `api/config.json`
+- `cp .env.example .env` and set MongoDB
 - `node app.js` to start the local server
 
 This project creates the following API:
