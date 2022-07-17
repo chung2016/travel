@@ -63,7 +63,7 @@ export class AppComponent {
   }
 
   async initChatPanel() {
-    const chatServerUrl = `http://localhost:3000`;
+    const chatServerUrl = `https://desolate-inlet-11034.herokuapp.com`;
     try {
       await this.loadScript(`${chatServerUrl}/chat-panel.js`);
       const chatPanelContainer = document.createElement("div");
