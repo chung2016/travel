@@ -13,6 +13,7 @@ app.use(express.static(`${__dirname}/dist`));
 app.use(cors());
 
 app.use("/api/v1", require("./api/v1/routers"));
+app.use("/api/v2", require("./api/v2/routers"));
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "dist/index.html"));
 });
