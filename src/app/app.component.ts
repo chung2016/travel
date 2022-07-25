@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-root",
@@ -63,7 +64,10 @@ export class AppComponent {
   }
 
   async initChatPanel() {
-    const chatServerUrl = `https://desolate-inlet-11034.herokuapp.com`;
+    if (!environment.loadChatPanel) {
+      return;
+    }
+    const chatServerUrl = environment.chatPanelUrl;
     try {
       await this.loadScript(`${chatServerUrl}/chat-panel.js`);
       const chatPanelContainer = document.createElement("div");

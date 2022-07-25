@@ -1,27 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const Upload = require("../models/upload.model");
 
 const Multer = require("multer");
-const fileType = require("file-type");
 
-const accepted_extensions = ["jpg", "png", "gif"];
-
-function validate_format(req, res, next) {
-  if (req.file) {
-    let mime = fileType(req.file.buffer);
-
-    if (!mime || !accepted_extensions.includes(mime.ext))
-      return next(
-        new Error(
-          "The uploaded file is not in " +
-            accepted_extensions.join(", ") +
-            " format!"
-        )
-      );
-  }
-  next();
-}
+const validate_format = require("../middlewares/validateFormat");
+const uploadController = require("../controllers/upload.controller");
 
 const multer = Multer({
   storage: Multer.memoryStorage(),
@@ -33,54 +16,13 @@ const multer = Multer({
   },
 });
 
-router.get("/:filename", async (req, res, next) => {
-  try {
-    const filename = req.params.filename;
-    const upload = await Upload.findOne({ filename });
-    if (!upload) throw "File not found!";
-    const { filebase64, mimetype, size } = upload;
-    res.writeHead(200, {
-      "Content-Type": mimetype,
-      "Content-Length": size,
-    });
-    res.end(Buffer.from(filebase64, "base64"));
-  } catch (error) {
-    next(error);
-  }
-});
+router
+  .get("/:filename", uploadController.getFile)
+  .post(
+    "/",
+    multer.single("file"),
+    validate_format,
+    uploadController.uploadFile
+  );
 
-router.post(
-  "/",
-  multer.single("file"),
-  validate_format,
-  async (req, res, next) => {
-    try {
-      const file = req.file;
-      if (!file) throw "file required";
-      const name = await uploadImageToStorage(file);
-      res.status(200).send({ file: name });
-    } catch (error) {
-      next(error);
-    }
-  }
-);
 module.exports = router;
-
-const uploadImageToStorage = async (file) => {
-  if (!file) throw "No image file";
-  const filename = `${file.originalname}_${Date.now()}`;
-  const filebase64 = Buffer.from(file.buffer).toString("base64");
-  const filesize = file.size;
-  const originalname = file.originalname;
-  const mimetype = file.mimetype;
-
-  const upload = new Upload({
-    filename,
-    filebase64,
-    originalname,
-    mimetype,
-    size: filesize,
-  });
-  await upload.save();
-  return `${process.env.APP_URL}/api/v1/upload/${filename}`;
-};

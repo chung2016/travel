@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUri: 'http://localhost:4000/api/v1'
+  apiUri: 'http://localhost:4000/api/v1',
+  loadChatPanel: false,
+  chatPanelUrl: 'https://desolate-inlet-11034.herokuapp.com'
 };
 
 /*
