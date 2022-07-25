@@ -6,11 +6,12 @@ function authUser(req, res, next) {
 
   jwt.verify(token, process.env.JWT_SECRET, (error, user) => {
     if (error) {
-      const error = new Error('Access denied. Invalid token.')
-      error.statusCode = 401
-      throw error
+      const e = new Error('Access denied. Invalid token.')
+      e.statusCode = 401
+      throw e
     }
     req.user = user
+    req.accessToken = token
     next()
   })
 }

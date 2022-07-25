@@ -9,9 +9,9 @@ function validate(schema) {
       const message = error.details
         .map(({ message }) => message)
         .reduce((prev, curr) => prev + curr + '\n', '')
-      const error = new Error(message)
-      error.statusCode = 422
-      throw error
+      const e = new Error(message)
+      e.statusCode = 422
+      throw e
     }
     next()
   }
