@@ -1,6 +1,7 @@
 # Travel API (v1)
 
 ## Features
+
 - User Login
 - User Register
 - Get User Profile
@@ -9,12 +10,10 @@
 - Create, Update, List, Delete, Retrieve Place
 - Create, List, Delete Comment
 
-
-
 ## Frontend - Angular
 
 - `ng serve -o` to start frontend, the frontend will automated show in you default browser
-- `ng build` to build fronted the complied code in dist/assignment 
+- `ng build` to build fronted the complied code in dist/assignment
 
 ### Frontend Dependencies
 
@@ -54,13 +53,14 @@
 - `node app.js` to start the local server
 
 This project creates the following API:
+
 - all request body must use json
 
 #### Users
 
-| HTTP Verb |         Path (URL)         |       Description       |                                              Request Body                                              |                                        Response Body                                        |
+| HTTP Verb | Path (URL)                 | Description             | Request Body                                                                                           | Response Body                                                                               |
 | --------- | -------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| POST      | /api/v1/users/authenticate | Login                   | email: required <br> password:  required                                                               | id<br>email<br>username<br>password<br>gender<br>createdAt<br>updatedAt<br>token            |
+| POST      | /api/v1/users/authenticate | Login                   | email: required <br> password: required                                                                | id<br>email<br>username<br>password<br>gender<br>createdAt<br>updatedAt<br>token            |
 | POST      | /api/v1/users/register     | Register                | email: required<br>username: required<br>password: required<br>gender: required ["Male", "Female"]<br> | id<br>email<br>username<br>password<br>gender<br>createdAt<br>updatedAt<br>token<br>        |
 | GET       | /api/v1/users              | Get all users           | null                                                                                                   | - json array<br>email:required<br>username:required<br>password:required<br>gender:required |
 | GET       | /api/v1/users/current      | Get current logged user | null                                                                                                   | id<br>email<br>username<br>gender<br>createdAt<br>updatedAt                                 |
@@ -70,15 +70,13 @@ This project creates the following API:
 
 #### Profile
 
-| HTTP Verb |      Path(URL)      |   Description    | Request Body |                       Response Body                       |
+| HTTP Verb | Path(URL)           | Description      | Request Body | Response Body                                             |
 | --------- | ------------------- | ---------------- | ------------ | --------------------------------------------------------- |
 | GET       | /api/v1/profile/:id | Get User Profile | null         | email<br>username<br>gender<br>createdAt<br>updatedAt<br> |
 
 #### Places
 
-
-
-| HTTP Verb |         Path (URL)          |        Description        |                                                                                                Request Body                                                                                                |                                                                Response                                                                |
+| HTTP Verb | Path (URL)                  | Description               | Request Body                                                                                                                                                                                               | Response                                                                                                                               |
 | --------- | --------------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | GET       | /api/v1/places              | Get all places            | null                                                                                                                                                                                                       | - json body <br>id<br>name<br>location<br>photo<br>type<br>description<br>authorComment<br>createdAt<br>updatedAt<br>author:userObject |
 | GET       | /api/v1/places/:id          | Get places by id          | null                                                                                                                                                                                                       | id<br>name<br>location<br>photo<br>type<br>description<br>authorComment<br>createdAt<br>updatedAt<br>author:userObject                 |
@@ -89,25 +87,27 @@ This project creates the following API:
 
 #### Comments
 
-| HTTP Verb |           Path (URL)            |       Description       |                        Request Body                        |           Response Body            |
+| HTTP Verb | Path (URL)                      | Description             | Request Body                                               | Response Body                      |
 | --------- | ------------------------------- | ----------------------- | ---------------------------------------------------------- | ---------------------------------- |
 | POST      | /api/v1/comments                | Create comment          | user: required<br>message: required<br>place: required<br> | id<br>message<br>user<br>place<br> |
 | DELETE    | /api/v1/comments/:id            | Delete comment by id    | null                                                       | null                               |
 | GET       | /api/v1/comments/place/:placeid | Get comment by Place id | null                                                       | id<br>message<br>user<br>place<br> |
 
 #### Upload
+
 - `this function is using form body request`
 
-| HTTP Verb |   Path(URL)    | Description |       Request Body       | Response Body |
+| HTTP Verb | Path(URL)      | Description | Request Body             | Response Body |
 | --------- | -------------- | ----------- | ------------------------ | ------------- |
 | POST      | /api/v1/upload | Upload file | file:required, limit:5mb | file          |
 
-
 ### Error
+
 - The response code may by 400, 401,422, 500
-Invalid Token example 
+  Invalid Token example
+
 ```json
 {
-    "message": "Invalid Token"
+  "message": "Invalid Token"
 }
 ```
