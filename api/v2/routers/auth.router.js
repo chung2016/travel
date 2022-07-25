@@ -10,6 +10,6 @@ router
   .post('/login', validate(authValidator.login), authController.login)
   .post('/logout', authUser, authController.logout)
   .get('/me', authUser, authController.me)
-  .post('/token', authUser, validate(authValidator.token), authController.token)
+  .post('/refresh', authUser, validate(authValidator.refresh), authController.refresh)
 
 module.exports = router

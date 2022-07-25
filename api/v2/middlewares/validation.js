@@ -6,10 +6,12 @@ function validate(schema) {
       abortEarly: false,
     })
     if (error) {
-      const messages = error.details
+      const message = error.details
         .map(({ message }) => message)
         .reduce((prev, curr) => prev + curr + '\n', '')
-      return res.status(422).json({ messages })
+      const error = new Error(message)
+      error.statusCode = 422
+      throw error
     }
     next()
   }

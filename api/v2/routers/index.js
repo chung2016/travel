@@ -1,13 +1,9 @@
 const express = require('express')
+const errorHandler = require('../middlewares/error-handler')
 const router = express.Router()
 
 router.use('/auth', require('./auth.router'))
 
-router.use((error, req, res, next) => {
-  if (!error.statusCode) console.error(error.stack)
-  const status = error.statusCode || 500
-  const message = error.message || 'Something broke!'
-  return res.status(status).json({ message })
-})
+router.use(errorHandler)
 
 module.exports = router
