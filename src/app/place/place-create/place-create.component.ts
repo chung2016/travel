@@ -6,6 +6,7 @@ import { Place, User } from 'src/app/core/models'
 import { Router } from '@angular/router'
 import { UploadService } from 'src/app/core/services/upload.service'
 import { finalize } from 'rxjs/operators'
+import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-place-create',
@@ -13,6 +14,7 @@ import { finalize } from 'rxjs/operators'
   styleUrls: ['./place-create.component.scss'],
 })
 export class PlaceCreateComponent implements OnInit {
+  placeTypeOptions = environment.placeTypeOptions
   place: Place = {} as Place
 
   data: any = {}

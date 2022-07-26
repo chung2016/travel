@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 import { PlaceService, AuthenticationService, AlertService } from 'src/app/core/services'
 import { UploadService } from 'src/app/core/services/upload.service'
 import { finalize } from 'rxjs/operators'
+import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-place-edit',
@@ -12,13 +13,15 @@ import { finalize } from 'rxjs/operators'
   styleUrls: ['./place-edit.component.scss'],
 })
 export class PlaceEditComponent implements OnInit {
+  placeTypeOptions = environment.placeTypeOptions
+
   place: Place = {} as Place
   editPlaceForm = new FormGroup({
+    authorComment: new FormControl(''),
     name: new FormControl('', Validators.compose([Validators.required])),
     location: new FormControl('', Validators.compose([Validators.required])),
     type: new FormControl('Relax'),
     description: new FormControl(''),
-    authorComment: new FormControl(''),
   })
   loading = false
   submitted = false
@@ -35,17 +38,12 @@ export class PlaceEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.placeService //
-        .getById(params['id'])
-        .subscribe((res) => {
-          this.place = res
-        })
+      this.placeService.getById(params['id']).subscribe((res) => {
+        this.place = res
+        this.editPlaceForm.patchValue(res)
+      }, console.error)
     })
-    this.authenticationService.currentUser //
-      .subscribe(
-        (x) => (this.currentUser = x),
-        (err) => console.log(err)
-      )
+    this.authenticationService.currentUser.subscribe((x) => (this.currentUser = x), console.error)
   }
   get f() {
     return this.editPlaceForm.controls
@@ -60,7 +58,7 @@ export class PlaceEditComponent implements OnInit {
     this.loading = true
 
     this.place.author = this.currentUser
-    this.updatePlace(this.editPlaceForm.value)
+    Object.assign(this.place, this.editPlaceForm.value)
     this.placeService
       .update(this.place)
       .pipe(finalize(() => (this.loading = false)))
@@ -69,16 +67,12 @@ export class PlaceEditComponent implements OnInit {
           this.data = data
 
           this.alertService.success('Update successful', true)
-          this.router.navigate(['/place/' + this.data._id])
+          this.router.navigate(['place/' + this.data._id])
         },
         (err) => {
           this.alertService.error(err)
         }
       )
-  }
-
-  updatePlace(values: Object) {
-    Object.assign(this.place, values)
   }
 
   handleFileInput(files: FileList) {
