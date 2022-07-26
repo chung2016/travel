@@ -5,10 +5,10 @@
     </p>
   </div>
   <div class="card-footer">
-    <a class="comment-author" [routerLink]="['/profile', comment.user.id]">
+    <a class="comment-author" [routerLink]="['profile', comment.user.id]">
       {{ comment.user.username }}
     </a>
-    <img class="comment-author-image" src="{{ comment.user.image }}" alt="User image" *ngIf="comment.user.image">
+    <img class="comment-author-image" [src]="comment.user.image" alt="User image" *ngIf="comment.user.image">
     <img class="comment-author-image" src="../../assets/images/default-profile.png" alt="User image"
       *ngIf="!comment.user.image">
     <span class="date-posted">

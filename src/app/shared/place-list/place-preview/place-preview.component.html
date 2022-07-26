@@ -1,7 +1,7 @@
 <div class="place-preview">
   <div class="place-info">
-    <a class="author" [routerLink]="['/profile', place.author.id]" *ngIf="place.author">
-      <img class="place-info-image" src="{{ place.author.image }}" alt="User image" *ngIf="place.author.image">
+    <a class="author" [routerLink]="['profile', place.author.id]" *ngIf="place.author">
+      <img class="place-info-image" [src]="place.author.image" alt="User image" *ngIf="place.author.image">
       <img class="place-info-image" src="../../assets/images/default-profile.png" alt="User image"
         *ngIf="!place.author.image">
       &nbsp;<span>{{ place.author.username }}</span>
@@ -10,10 +10,10 @@
       Publish At: {{ place.createdAt | date: 'longDate' }}
     </span>
   </div>
-  <a [routerLink]="['/place', place.id]" class="preview-link row">
+  <a [routerLink]="['place', place.id]" class="preview-link row">
     <div class="place-pre-photo col-md-5">
       <span *ngIf="!place.photo">No photo</span>
-      <img src="{{ place.photo }}" alt="" *ngIf="place.photo">
+      <img [src]="place.photo" alt="" *ngIf="place.photo">
     </div>
     <div class="place-pre-contect col-md-7">
       <h1>Name: {{ place.name }}</h1>

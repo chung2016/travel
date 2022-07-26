@@ -11,7 +11,7 @@
         </div>
         <h4>Username: {{ profile.username }}</h4>
         <h4>Gender: {{ profile.gender }}</h4>
-        <a [routerLink]="['/setting']" [hidden]="!isCurrentUser" class="btn btn-sm btn-outline-secondary action-btn">
+        <a [routerLink]="['setting']" [hidden]="!isCurrentUser" class="btn btn-sm btn-outline-secondary action-btn">
           Edit Profile Settings
         </a>
 
@@ -26,7 +26,7 @@
             <ul class="nav nav-tabs">
               <li class="nav-item">
                 <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                  [routerLink]="['/profile', profile.id]">
+                  [routerLink]="['profile', profile.id]">
                   My Place
                 </a>
               </li>

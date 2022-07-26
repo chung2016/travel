@@ -15,7 +15,7 @@
           <label for="photo">Photo</label>
           <input type="file" name="file" (change)="handleFileInput($event.target.files)" class="form-control-file"
             *ngIf="!place.photo">
-          <img src="{{ place.photo }}" alt="place-photo" *ngIf="place.photo" class="place-photo">
+          <img [src]="place.photo" alt="place-photo" *ngIf="place.photo" class="place-photo">
         </div>
         <div class="form-group">
           <label for="location">Location</label>
