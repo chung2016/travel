@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/v2/profile'])
       },
       (error) => {
-        alert(error.error.message)
+        alert(error.error?.message || 'login failure')
       }
     )
   }

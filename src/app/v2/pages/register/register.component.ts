@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
         alert('register success')
       },
       (error) => {
-        alert(error.error.message)
+        alert(error.error?.message || 'register failure')
       }
     )
   }
