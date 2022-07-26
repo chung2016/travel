@@ -4,7 +4,7 @@ const DB_CONSTRAINT = !!+process.env.DB_CONSTRAINT
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Oauths', {
+    await queryInterface.createTable('oauths', {
       id: {
         field: 'id',
         allowNull: false,
@@ -43,6 +43,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Oauths')
+    await queryInterface.dropTable('oauths')
   },
 }
