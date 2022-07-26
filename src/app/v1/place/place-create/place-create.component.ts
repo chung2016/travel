@@ -3,9 +3,9 @@ import { Validators, FormGroup, FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
 import { finalize } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
-import { Place, User } from '../../core/models'
-import { PlaceService, AlertService, AuthenticationService } from '../../core/services'
-import { UploadService } from '../../core/services/upload.service'
+import { Place, User } from '@v1/core/models'
+import { PlaceService, AlertService, AuthenticationService } from '@v1/core/services'
+import { UploadService } from '@v1/core/services/upload.service'
 
 @Component({
   selector: 'app-place-create',

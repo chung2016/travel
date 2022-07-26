@@ -4,7 +4,7 @@ import { PlaceCreateComponent } from './place-create/place-create.component'
 import { ReactiveFormsModule } from '@angular/forms'
 import { PlaceRoutingModule } from './place-routing.module'
 import { PlaceShowComponent } from './place-show/place-show.component'
-import { SharedModule } from '../shared/shared.module'
+import { SharedModule } from '@v1/shared/shared.module'
 import { PlaceCommentComponent } from './place-comment/place-comment.component'
 import { PlaceEditComponent } from './place-edit/place-edit.component'
 

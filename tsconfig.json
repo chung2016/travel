@@ -2,6 +2,9 @@
 	"compileOnSave": false,
 	"compilerOptions": {
 		"baseUrl": "./",
+		"paths": {
+			"@v1/*": ["src/app/v1/*"]
+		},
 		"outDir": "./dist/out-tsc",
 		"sourceMap": true,
 		"declaration": false,

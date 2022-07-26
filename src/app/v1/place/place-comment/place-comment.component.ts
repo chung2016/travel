@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
-import { Comment, User } from '../../core/models'
-import { AuthenticationService } from '../../core/services'
+import { Comment, User } from '@v1/core/models'
+import { AuthenticationService } from '@v1/core/services'
 @Component({
   selector: 'app-place-comment',
   templateUrl: './place-comment.component.html',

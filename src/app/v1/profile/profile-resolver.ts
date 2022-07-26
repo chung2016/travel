@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router'
 import { Observable } from 'rxjs'
 
-import { User } from '../core/models'
-import { ProfileService } from '../core/services'
+import { User } from '@v1/core/models'
+import { ProfileService } from '@v1/core/services'
 import { catchError } from 'rxjs/operators'
 
 @Injectable()

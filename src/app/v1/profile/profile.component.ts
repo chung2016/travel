@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { User, Profile } from '../core/models'
-import { UserService, AuthenticationService, ProfileService } from '../core/services'
+import { User, Profile } from '@v1/core/models'
+import { AuthenticationService, ProfileService } from '@v1/core/services'
 import { ActivatedRoute } from '@angular/router'
 import { concatMap, tap } from 'rxjs/operators'
 

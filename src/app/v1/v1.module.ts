@@ -9,8 +9,6 @@ import { AlertComponent } from './shared/alert/alert.component'
 import { NavbarComponent } from './shared/navbar/navbar.component'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms'
-import { AuthModule } from './auth/auth.module'
-import { PlaceModule } from './place/place.module'
 import { SharedModule } from './shared/shared.module'
 import { JwtInterceptor, ErrorInterceptor } from './core/helpers'
 import {

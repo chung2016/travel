@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Validators, FormGroup, FormControl } from '@angular/forms'
 import { finalize } from 'rxjs/operators'
-import { Place, User, Comment } from '../../core/models'
-import { PlaceService, AuthenticationService } from '../../core/services'
-import { CommentService } from '../../core/services/comment.service'
+import { Place, User, Comment } from '@v1/core/models'
+import { PlaceService, AuthenticationService } from '@v1/core/services'
+import { CommentService } from '@v1/core/services/comment.service'
 
 @Component({
   selector: 'app-place-show',
