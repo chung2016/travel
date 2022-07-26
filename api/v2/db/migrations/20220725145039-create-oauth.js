@@ -1,4 +1,7 @@
 'use strict'
+
+const DB_CONSTRAINT = !!+process.env.DB_CONSTRAINT
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Oauths', {
@@ -20,7 +23,7 @@ module.exports = {
       userId: {
         field: 'user_id',
         type: Sequelize.INTEGER,
-        references: {
+        references: DB_CONSTRAINT && {
           model: {
             tableName: 'users',
           },
