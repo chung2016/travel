@@ -1,0 +1,114 @@
+<div class="place-show">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="container place-content">
+          <img [src]="place.photo" alt="place-photo" *ngIf="!loading && place.photo" />
+          <h4>Name</h4>
+          <p *ngIf="!loading" class="content-text">{{ place.name }}</p>
+          <h4>Location</h4>
+          <p *ngIf="!loading" class="content-text">{{ place.location }}</p>
+          <h4>Type</h4>
+          <p *ngIf="!loading && place.type" class="content-text">{{ place.type }}</p>
+          <h4>Description</h4>
+          <p *ngIf="!loading" class="content-text">{{ place.description }}</p>
+          <h4>Author Comment</h4>
+          <p *ngIf="!loading" class="content-text">{{ place.authorComment }}</p>
+
+          <div class="author-control btn-group" *ngIf="isAuthorPlace">
+            <a [routerLink]="['edit', place.id]" class="btn btn-success">Edit</a>
+            <button class="btn btn-danger" (click)="deletePlace()">Delete</button>
+          </div>
+        </div>
+        <div class="place-post-comment">
+          <div *ngIf="!currentUser" class="comment-auth-message">
+            <a routerLink="auth/login">Login</a> or <a routerLink="register">Register</a> to add
+            comments
+          </div>
+          <form
+            class="card comment-form"
+            [formGroup]="commentForm"
+            (ngSubmit)="onSubmit()"
+            *ngIf="currentUser"
+          >
+            <div class="card-block">
+              <textarea
+                name=""
+                formControlName="message"
+                class="form-control"
+                placeholder="Write a comment..."
+                rows="3"
+              ></textarea>
+            </div>
+            <div class="card-footer">
+              <span>{{ currentUser.username }}</span>
+              <img
+                class="card-footer-image"
+                [src]="currentUser.image"
+                alt="User image"
+                *ngIf="currentUser.image"
+              />
+              <img
+                class="card-footer-image"
+                src="../../assets/images/default-profile.png"
+                alt="User image"
+                *ngIf="!currentUser.image"
+              />
+              <button class="btn btn-sm btn-info" type="submit" [disabled]="commentForm.disabled">
+                Post Comment
+              </button>
+              <img
+                *ngIf="formloading"
+                class="pl-3"
+                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+              />
+            </div>
+          </form>
+        </div>
+        <div class="place-comments">
+          <app-place-comment
+            *ngFor="let comment of comments"
+            [comment]="comment"
+            (deleteComment)="onDeleteComment(comment)"
+          >
+          </app-place-comment>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card author-content" *ngIf="place">
+          <h2 class="card-header">Author</h2>
+          <div class="author-image" *ngIf="place.author">
+            <img
+              class="card-img-top author-image"
+              [src]="place.author.image"
+              alt="User image"
+              *ngIf="place.author.image"
+            />
+            <img
+              class="card-img-top author-image"
+              src="../../assets/images/default-profile.png"
+              alt="User image"
+              *ngIf="!place.author.image"
+            />
+          </div>
+          <div class="card-body" *ngIf="place.author">
+            <h4 class="card-title">Username</h4>
+            <p class="card-text" *ngIf="!loading">{{ place.author.username }}</p>
+            <h4 class="card-title">E-mail</h4>
+            <p class="card-text" *ngIf="!loading">{{ place.author.email }}</p>
+            <h4 class="card-title">Gender</h4>
+            <p class="card-text" *ngIf="!loading">{{ place.author.gender }}</p>
+            <a
+              class="btn btn-primary stretched-link"
+              [routerLink]="['profile', place.author.id]"
+              *ngIf="!loading"
+            >
+              See Profile
+            </a>
+          </div>
+          <div class="card-body" *ngIf="!place.author">Author has been deleted</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

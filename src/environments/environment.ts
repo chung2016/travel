@@ -18,8 +18,8 @@ export const environment = {
     'Whatever',
     'Tour Group',
     'Adventurer',
-  ]
-};
+  ],
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

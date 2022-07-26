@@ -14,5 +14,5 @@ export const environment = {
     'Whatever',
     'Tour Group',
     'Adventurer',
-  ]
-};
+  ],
+}

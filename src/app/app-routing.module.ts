@@ -1,25 +1,24 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-
-import { HomeComponent } from './home/home.component';
-// auth
-import { AuthGuard } from './core/guards/auth.guard';
-import { SettingComponent } from './setting/setting.component';
+import { NgModule } from '@angular/core'
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router'
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, },
   {
-    path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+    path: '',
+    redirectTo: 'v1',
+    pathMatch: 'full',
   },
-  //auth
-  { path: 'setting', component: SettingComponent, canActivate: [AuthGuard] },
-];
+  {
+    path: 'v1',
+    loadChildren: () => import('./v1/v1.module').then((m) => m.V1Module),
+  },
+]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules
-  })],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
