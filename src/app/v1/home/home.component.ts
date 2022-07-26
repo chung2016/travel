@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { PlaceListConfig } from '../core/models'
+import { PlaceListConfig } from '@v1/core/models'
 
 @Component({
   selector: 'app-home',

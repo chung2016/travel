@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core'
-import { AlertService, AuthenticationService, UserService } from '../core/services'
+import { AlertService, AuthenticationService, UserService } from '@v1/core/services'
 import { Validators, FormGroup, FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
 import { finalize, first } from 'rxjs/operators'
-import { UploadService } from '../core/services/upload.service'
-import { User } from '../core/models'
+import { UploadService } from '@v1/core/services/upload.service'
 
 @Component({
   selector: 'app-setting',

@@ -8,7 +8,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    queryInterface.addColumn('Oauths', 'revoked', {
+    queryInterface.addColumn('oauths', 'revoked', {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
     })
@@ -21,6 +21,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    queryInterface.removeColumn('Oauths', 'revoked')
+    queryInterface.removeColumn('oauths', 'revoked')
   },
 }

@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
-import { User } from '../models'
+import { User } from '@v1/core/models'
 
 @Injectable()
 export class AuthenticationService {

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { AuthGuard } from './core/guards/auth.guard'
-import { HomeComponent } from './home/home.component'
-import { SettingComponent } from './setting/setting.component'
-import { V1Component } from './v1.component'
+import { AuthGuard } from '@v1/core/guards/auth.guard'
+import { HomeComponent } from '@v1/home/home.component'
+import { SettingComponent } from '@v1/setting/setting.component'
+import { V1Component } from '@v1/v1.component'
 
 const routes: Routes = [
   {

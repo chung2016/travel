@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { finalize } from 'rxjs/operators'
-import { PlaceListConfig } from '../../core/models'
-import { PlaceService } from '../../core/services'
+import { PlaceListConfig } from '@v1/core/models'
+import { PlaceService } from '@v1/core/services'
 
 @Component({
   selector: 'app-place-list',

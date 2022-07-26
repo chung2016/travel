@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
-import { User } from '../../core/models'
-import { AuthenticationService } from '../../core/services'
+import { User } from '@v1/core/models'
+import { AuthenticationService } from '@v1/core/services'
 
 @Component({
   selector: 'app-navbar',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { User, PlaceListConfig } from '../../core/models'
+import { User, PlaceListConfig } from '@v1/core/models'
 
 @Component({
   selector: 'app-profile-places',
