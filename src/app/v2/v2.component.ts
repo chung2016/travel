@@ -9,6 +9,9 @@ import { AuthService } from './services/auth.service'
 export class V2Component implements OnInit {
   constructor(private authService: AuthService) {
     this.authService.setLoggedIn(!!localStorage.getItem('refreshToken'))
+    this.authService.onLoggedIn().subscribe((loggedIn) => {
+      console.log('onloggedin', loggedIn)
+    })
   }
 
   ngOnInit(): void {}

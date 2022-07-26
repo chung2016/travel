@@ -12,7 +12,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ProfileComponent } from './pages/profile/profile.component'
 import { AuthService } from './services/auth.service'
 import { AuthGuard } from './guards/auth.guard'
-import { GuestGuard } from './guards/guest.guard'
 
 @NgModule({
   declarations: [V2Component, LoginComponent, RegisterComponent, NavbarComponent, ProfileComponent],
@@ -20,7 +19,6 @@ import { GuestGuard } from './guards/guest.guard'
   providers: [
     AuthService,
     AuthGuard,
-    GuestGuard,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
 })
