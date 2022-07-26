@@ -21,10 +21,10 @@
   border-radius: 50%;
 }
 #activate-chat-panel-fab::before {
-  content: "";
+  content: '';
 }
 #activate-chat-panel-fab.active::before {
-  content: "";
+  content: '';
   width: 20px;
   height: 20px;
   position: absolute;

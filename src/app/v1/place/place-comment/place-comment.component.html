@@ -1,0 +1,32 @@
+<div class="card place-comment-block">
+  <div class="card-block">
+    <p class="card-text">
+      {{ comment.message }}
+    </p>
+  </div>
+  <div class="card-footer">
+    <a class="comment-author" [routerLink]="['/v1/profile', comment.user.id]">
+      {{ comment.user.username }}
+    </a>
+    <img
+      class="comment-author-image"
+      [src]="comment.user.image"
+      alt="User image"
+      *ngIf="comment.user.image"
+    />
+    <img
+      class="comment-author-image"
+      src="../../assets/images/default-profile.png"
+      alt="User image"
+      *ngIf="!comment.user.image"
+    />
+    <span class="date-posted">
+      {{ comment.createdAt | date: 'longDate' }}
+    </span>
+    <span class="delete-comment" [hidden]="!canModify" *ngIf="currentUser">
+      <button class="btn btn-danger" (click)="deleteClicked()">
+        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+      </button>
+    </span>
+  </div>
+</div>
