@@ -13,9 +13,11 @@ module.exports = {
   delete: _delete,
 }
 
-async function authenticate({ email, password }) {
-  const criteria = { email: email }
-  const user = await User.findOne(criteria)
+async function authenticate(username, password) {
+  const loginBy = username.indexOf('@') === -1 ? 'username' : 'email'
+  const user = await User.findOne({
+    [loginBy]: username,
+  })
   if (user && user.comparePassword(password)) {
     const { password, ...userWithoutPassword } = user.toObject()
     const token = jwt.sign({ sub: user.id }, process.env.JWT_SECRET)

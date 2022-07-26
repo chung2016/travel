@@ -12,7 +12,8 @@ module.exports = {
 
 async function authenticate(req, res, next) {
   try {
-    const user = await userService.authenticate(req.body)
+    const { email: username, password } = req.body
+    const user = await userService.authenticate(username, password)
     return user
       ? res.json(user)
       : res.status(400).json({ message: 'These credentials do not match our records.' })

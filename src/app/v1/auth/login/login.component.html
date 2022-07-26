@@ -9,10 +9,10 @@
             formControlName="email"
             class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-            placeholder="E-mail"
+            placeholder="E-mail or Username"
           />
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">E-mail is required</div>
+            <div *ngIf="f.email.errors.required">This field is required</div>
           </div>
         </div>
         <div class="form-group">
