@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import { AuthService } from './services/auth.service'
 
 @Component({
   selector: 'app-v2',
   templateUrl: './v2.component.html',
-  styleUrls: ['./v2.component.scss']
+  styleUrls: ['./v2.component.scss'],
 })
 export class V2Component implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private authService: AuthService) {
+    this.authService.setLoggedIn(!!localStorage.getItem('refreshToken'))
   }
 
+  ngOnInit(): void {}
 }

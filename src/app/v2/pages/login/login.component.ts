@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         localStorage.setItem('accessToken', data.accessToken)
         localStorage.setItem('refreshToken', data.refreshToken)
+        this.authService.setLoggedIn(true)
         alert('login success')
         this.router.navigate(['/v2/profile'])
       },

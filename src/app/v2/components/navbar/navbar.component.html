@@ -1,9 +1,9 @@
 <nav>
   <ul>
-    <li><a [routerLink]="[ '/v2' ]">Home</a></li>
-    <li><a [routerLink]="[ '/v2/profile' ]">Profile</a></li>
-    <li><a [routerLink]="[ '/v2/login' ]">Login</a></li>
-    <li><a [routerLink]="[ '/v2/register' ]">Register</a></li>
-    <li><button type="button" (click)="logout()">Logout</button></li>
+    <li><a [routerLink]="['/v2']">Home</a></li>
+    <li *ngIf="loggedIn"><a [routerLink]="['/v2/profile']">Profile</a></li>
+    <li *ngIf="loggedIn"><button type="button" (click)="logout()">Logout</button></li>
+    <li *ngIf="!loggedIn"><a [routerLink]="['/v2/login']">Login</a></li>
+    <li *ngIf="!loggedIn"><a [routerLink]="['/v2/register']">Register</a></li>
   </ul>
 </nav>

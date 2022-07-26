@@ -1,1 +1,13 @@
-<p>profile works!</p>
+<h1>Profile</h1>
+<dl>
+  <dt>email</dt>
+  <dd>{{ user.email }}</dd>
+  <dt>username</dt>
+  <dd>{{ user.username }}</dd>
+  <dt>firstName</dt>
+  <dd>{{ user.firstName }}</dd>
+  <dt>lastName</dt>
+  <dd>{{ user.lastName }}</dd>
+  <dt>createdAt</dt>
+  <dd>{{ user.createdAt | date: 'yyyy-mm-dd hh:mm:ss' }}</dd>
+</dl>
