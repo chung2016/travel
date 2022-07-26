@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core'
-import { finalize } from 'rxjs/operators'
+import { finalize, map, reduce } from 'rxjs/operators'
 import { PlaceListConfig } from '@v1/core/models'
 import { PlaceService } from '@v1/core/services'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-place-list',
@@ -16,33 +17,22 @@ export class PlaceListComponent {
     this.runQuery()
   }
   query: PlaceListConfig
-  places = []
+  places$: Observable<Object>
   loading = true
 
   private runQuery() {
-    if (this.query.filters.author) {
-      this.placeService
-        .getByUserId(this.query.filters.author)
-        .pipe(finalize(() => (this.loading = false)))
-        .subscribe((places: any) => {
-          this.setPlaces(places)
-        }, console.error)
-    } else {
-      this.placeService
-        .getAll()
-        .pipe(finalize(() => (this.loading = false)))
-        .subscribe((places: any) => {
-          this.setPlaces(places)
-        }, console.error)
-    }
-    this.places = []
-  }
-
-  setPlaces(places = []) {
-    this.places = places.reduce((prev, curr, index) => {
-      if (index % 3 === 0) prev.push([])
-      prev.at(-1).push(curr)
-      return prev
-    }, [])
+    const request = this.query.filters.author
+      ? this.placeService.getByUserId(this.query.filters.author)
+      : this.placeService.getAll()
+    this.places$ = request.pipe(
+      map((val: []) =>
+        val.reduce((acc, curr, index) => {
+          if (index % 3 === 0) acc.push([])
+          acc[acc.length - 1].push(curr)
+          return acc
+        }, [])
+      ),
+      finalize(() => (this.loading = false))
+    )
   }
 }

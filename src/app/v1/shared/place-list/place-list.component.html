@@ -1,8 +1,12 @@
-<div class="row" *ngFor="let row of places">
+<div class="row" *ngFor="let row of places$ | async">
   <div class="col-md-4 col-xs-12" *ngFor="let place of row">
     <div class="card">
-      <span *ngIf="!place.photo">No photo</span>
-      <img [src]="place.photo" alt="" *ngIf="place.photo" class="place-pre-photo" />
+      <ng-container *ngIf="place.photo; else elseTemplate">
+        <img [src]="place.photo" alt="" class="place-pre-photo" />
+      </ng-container>
+      <ng-template #elseTemplate>
+        <span class="place-pre-photo">No photo</span>
+      </ng-template>
       <div class="card-body">
         <div>
           <a class="author" [routerLink]="['/v1/profile', place.author.id]" *ngIf="place.author">
@@ -33,4 +37,4 @@
 
 <div class="app-place-preview" [hidden]="!loading">Loading places...</div>
 
-<div class="app-place-preview" [hidden]="loading || places.length">No Record...</div>
+<!-- <div class="app-place-preview" [hidden]="loading || places.length">No Record...</div> -->
