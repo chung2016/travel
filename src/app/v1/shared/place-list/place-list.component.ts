@@ -16,25 +16,33 @@ export class PlaceListComponent {
     this.runQuery()
   }
   query: PlaceListConfig
-  places: any = {}
+  places = []
   loading = true
 
-  runQuery() {
+  private runQuery() {
     if (this.query.filters.author) {
       this.placeService
         .getByUserId(this.query.filters.author)
         .pipe(finalize(() => (this.loading = false)))
-        .subscribe((places) => {
-          this.places = places
+        .subscribe((places: any) => {
+          this.setPlaces(places)
         }, console.error)
     } else {
       this.placeService
         .getAll()
         .pipe(finalize(() => (this.loading = false)))
-        .subscribe((places) => {
-          this.places = places
+        .subscribe((places: any) => {
+          this.setPlaces(places)
         }, console.error)
     }
     this.places = []
+  }
+
+  setPlaces(places = []) {
+    this.places = places.reduce((prev, curr, index) => {
+      if (index % 3 === 0) prev.push([])
+      prev.at(-1).push(curr)
+      return prev
+    }, [])
   }
 }

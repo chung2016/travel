@@ -69,8 +69,12 @@
   text-align: center;
 }
 
-.place-pre-photo > img {
+img.place-pre-photo {
   object-fit: cover;
   width: 100%;
-  max-height: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.card {
+  margin-bottom: 1rem;
 }
