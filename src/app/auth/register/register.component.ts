@@ -1,65 +1,67 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormGroup, Validators, FormControl } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { Validators, FormControl, FormGroup } from '@angular/forms'
+import { finalize, first } from 'rxjs/operators'
 
-import { AlertService, UserService, AuthenticationService } from '../../core/services';
+import { AlertService, UserService, AuthenticationService } from '../../core/services'
+import { User } from 'src/app/core/models'
 
 @Component({
-    selector: 'app-register',
-    templateUrl: './register.component.html',
-    styleUrls: ['./register.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  registerForm = new FormGroup({
+    email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+    username: new FormControl('', Validators.compose([Validators.required])),
+    password: new FormControl(
+      '',
+      Validators.compose([Validators.required, Validators.minLength(6)])
+    ),
+    gender: new FormControl('Male', Validators.compose([])),
+  })
+  loading = false
+  submitted = false
 
-    registerForm: UntypedFormGroup;
-    loading = false;
-    submitted = false;
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private userService: UserService,
+    private alertService: AlertService
+  ) {
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/'])
+    }
+  }
 
-    constructor(
-        private formBuilder: UntypedFormBuilder,
-        private router: Router,
-        private authenticationService: AuthenticationService,
-        private userService: UserService,
-        private alertService: AlertService
-    ) {
-        if (this.authenticationService.currentUserValue) {
-            this.router.navigate(['/']);
+  ngOnInit() {}
+
+  get f() {
+    return this.registerForm.controls
+  }
+
+  onSubmit() {
+    this.submitted = true
+    if (this.registerForm.invalid) {
+      return
+    }
+
+    this.loading = true
+    this.userService
+      .register(this.registerForm.value as User)
+      .pipe(
+        first(),
+        finalize(() => (this.loading = false))
+      )
+      .subscribe(
+        () => {
+          this.alertService.success('Registration successful', true)
+          this.router.navigate(['/login'])
+        },
+        (error) => {
+          this.alertService.error(error)
         }
-    }
-
-    ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            email: ['', [Validators.required, Validators.email]],
-            username: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]],
-            gender: ['Male', []],
-        });
-
-        
-    }
-
-    get f() { return this.registerForm.controls; }
-
-    onSubmit() {
-        this.submitted = true;
-        if (this.registerForm.invalid) {
-            return;
-        }
-
-
-        this.loading = true;
-        this.userService.register(this.registerForm.value)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
-    }
-
+      )
+  }
 }

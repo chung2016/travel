@@ -26,7 +26,7 @@ export class UserService {
     return this.http.post(`${this.uri}/register`, user);
   }
 
-  update(user: User) {
+  update(user) {
     return this.http.put(`${this.uri}/${user.id}`, user);
   }
 

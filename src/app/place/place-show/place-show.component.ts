@@ -1,111 +1,101 @@
-import { Component, OnInit } from '@angular/core';
-import { PlaceService, AuthenticationService } from 'src/app/core/services';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Place, Comment, User } from 'src/app/core/models';
-import { CommentService } from 'src/app/core/services/comment.service';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core'
+import { PlaceService, AuthenticationService } from 'src/app/core/services'
+import { ActivatedRoute, Router } from '@angular/router'
+import { Place, Comment, User } from 'src/app/core/models'
+import { CommentService } from 'src/app/core/services/comment.service'
+import { Validators, FormGroup, FormControl } from '@angular/forms'
+import { finalize } from 'rxjs/operators'
 
 @Component({
   selector: 'app-place-show',
   templateUrl: './place-show.component.html',
-  styleUrls: ['./place-show.component.scss']
+  styleUrls: ['./place-show.component.scss'],
 })
 export class PlaceShowComponent implements OnInit {
-  place: Place;
-  loading = true;
-  comments: Comment[];
-  commentForm: UntypedFormGroup;
-  submitted = false;
-  formloading = false;
-  currentUser: User;
-  newComment: Comment = {} as Comment;
-  isAuthorPlace = false;
+  place: Place
+  loading = true
+  comments: Comment[]
+  commentForm = new FormGroup({
+    message: new FormControl('', Validators.compose([Validators.required])),
+  })
+  submitted = false
+  formloading = false
+  currentUser: User
+  newComment: Comment = {} as Comment
+  isAuthorPlace = false
 
   constructor(
     private route: ActivatedRoute,
     private placeService: PlaceService,
     private commentService: CommentService,
-    private formBuilder: UntypedFormBuilder,
     private authenticationService: AuthenticationService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x, err => console.log(err));
-    this.newComment.user = this.currentUser;
-    this.commentForm = this.formBuilder.group({
-      message: ['', [Validators.required]],
-    });
-    this.placeService.getById(this.route.snapshot.params['id'])
-      .subscribe(place => {
-        this.place = place;
-        this.getComment();
-        this.loading = false;
-        this.newComment.place = place;
+    this.authenticationService.currentUser.subscribe((x) => (this.currentUser = x), console.error)
+    this.newComment.user = this.currentUser
+    this.placeService
+      .getById(this.route.snapshot.params['id'])
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe((place) => {
+        this.place = place
+        this.getComment()
+        this.newComment.place = place
         if (this.currentUser) {
-          this.isAuthorPlace = (this.currentUser._id === place.author.id); 
+          this.isAuthorPlace = this.currentUser._id === place.author.id
         }
-      }, err => {
-        console.log(err);
-        this.loading = false;
-      });
+      }, console.error)
   }
 
-  get f() { return this.commentForm.controls; }
+  get f() {
+    return this.commentForm.controls
+  }
 
   getComment() {
-    this.commentService.getByPlaceId(this.place.id)
-      .subscribe(comments => {
-        this.comments = comments;
-      })
+    this.commentService.getByPlaceId(this.place.id).subscribe((comments) => {
+      this.comments = comments
+    })
   }
 
   onSubmit() {
     if (this.commentForm.invalid) {
-      return;
+      return
     }
-    this.submitted = true;
-    this.formloading = true;
-    this.updateNewComment(this.commentForm.value);
-    this.commentService.create(this.newComment).subscribe(
-      data => {
-        this.comments.unshift(data);
-        this.formloading = false;
-
-        console.log(this.commentForm.reset(''))
-      },
-      err => {
-        this.loading = false;
-        console.log(err)
-      }
-    )
+    this.submitted = true
+    this.formloading = true
+    this.commentForm.disable()
+    this.updateNewComment(this.commentForm.value)
+    this.commentService
+      .create(this.newComment)
+      .pipe(
+        finalize(() => {
+          this.loading = false
+          this.formloading = false
+        })
+      )
+      .subscribe((data) => {
+        this.comments.unshift(data)
+        this.commentForm.enable()
+        this.commentForm.reset()
+      }, console.error)
   }
 
   updateNewComment(values: Object) {
-    Object.assign(this.newComment, values);
+    Object.assign(this.newComment, values)
   }
 
   onDeleteComment(comment) {
-    this.commentService.delete(comment.id)
-      .subscribe(
-        data => {
-          this.comments = this.comments.filter((item) => item !== comment);
-        }
-      );
+    this.commentService.delete(comment.id).subscribe(() => {
+      this.comments = this.comments.filter((item) => item !== comment)
+    })
   }
 
   deletePlace() {
-    if (confirm("Are you sure to delete ")) {
-      this.placeService.delete(this.place.id)
-        .subscribe(
-          data => {
-            this.router.navigate(['/']);
-            console.log(data);
-  
-          }, err => {
-            console.log(err)
-          }
-        );
+    if (confirm('Are you sure to delete ')) {
+      this.placeService.delete(this.place.id).subscribe(() => {
+        this.router.navigate(['/'])
+      }, console.error)
     }
   }
 }
