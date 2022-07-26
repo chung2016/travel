@@ -94,7 +94,7 @@ export class SettingComponent implements OnInit {
         .subscribe(
           () => {
             this.authenticationService.logout()
-            this._router.navigate(['/v1/login'])
+            this._router.navigate(['/v1/auth/login'])
           },
           (err) => {
             this.alertService.error(err)
