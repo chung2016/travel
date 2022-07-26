@@ -67,7 +67,7 @@ export class PlaceEditComponent implements OnInit {
           this.data = data
 
           this.alertService.success('Update successful', true)
-          this.router.navigate(['place/' + this.data._id])
+          this.router.navigate([`/v1/place/${this.data._id}`])
         },
         (err) => {
           this.alertService.error(err)

@@ -5,7 +5,7 @@
     </p>
   </div>
   <div class="card-footer">
-    <a class="comment-author" [routerLink]="['profile', comment.user.id]">
+    <a class="comment-author" [routerLink]="['/v1/profile', comment.user.id]">
       {{ comment.user.username }}
     </a>
     <img

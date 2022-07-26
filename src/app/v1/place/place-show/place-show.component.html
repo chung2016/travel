@@ -16,14 +16,14 @@
           <p *ngIf="!loading" class="content-text">{{ place.authorComment }}</p>
 
           <div class="author-control btn-group" *ngIf="isAuthorPlace">
-            <a [routerLink]="['edit', place.id]" class="btn btn-success">Edit</a>
+            <a [routerLink]="['/v1/place/edit', place.id]" class="btn btn-success">Edit</a>
             <button class="btn btn-danger" (click)="deletePlace()">Delete</button>
           </div>
         </div>
         <div class="place-post-comment">
           <div *ngIf="!currentUser" class="comment-auth-message">
-            <a routerLink="auth/login">Login</a> or <a routerLink="register">Register</a> to add
-            comments
+            <a [routerLink]="['/v1/auth/login']">Login</a> or <a [routerLink]="['/v1/auth/register']">Register</a> to
+            add comments
           </div>
           <form
             class="card comment-form"
@@ -100,7 +100,7 @@
             <p class="card-text" *ngIf="!loading">{{ place.author.gender }}</p>
             <a
               class="btn btn-primary stretched-link"
-              [routerLink]="['profile', place.author.id]"
+              [routerLink]="['/v1/profile', place.author.id]"
               *ngIf="!loading"
             >
               See Profile

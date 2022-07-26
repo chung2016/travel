@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService
   ) {
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/'])
+      this.router.navigate(['/v1'])
     }
   }
 

@@ -94,7 +94,7 @@ export class PlaceShowComponent implements OnInit {
   deletePlace() {
     if (confirm('Are you sure to delete ')) {
       this.placeService.delete(this.place.id).subscribe(() => {
-        this.router.navigate(['/'])
+        this.router.navigate(['/v1'])
       }, console.error)
     }
   }

@@ -13,6 +13,6 @@ export class ProfileResolver implements Resolve<User> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
     return this.profileService
       .getById(route.params['userid'])
-      .pipe(catchError((err) => this.router.navigateByUrl('/')))
+      .pipe(catchError((err) => this.router.navigateByUrl('/v1')))
   }
 }

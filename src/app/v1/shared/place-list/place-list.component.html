@@ -1,6 +1,6 @@
 <div class="place-preview" *ngFor="let place of places">
   <div class="place-info">
-    <a class="author" [routerLink]="['profile', place.author.id]" *ngIf="place.author">
+    <a class="author" [routerLink]="['/v1/profile', place.author.id]" *ngIf="place.author">
       <img
         class="place-info-image"
         [src]="place.author.image"
@@ -17,7 +17,7 @@
     </a>
     <span class="date"> Publish At: {{ place.createdAt | date: 'longDate' }} </span>
   </div>
-  <a [routerLink]="['place', place.id]" class="preview-link row">
+  <a [routerLink]="['/v1/place', place.id]" class="preview-link row">
     <div class="place-pre-photo col-md-5">
       <span *ngIf="!place.photo">No photo</span>
       <img [src]="place.photo" alt="" *ngIf="place.photo" />

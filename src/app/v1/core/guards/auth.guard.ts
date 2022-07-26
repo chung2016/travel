@@ -11,11 +11,7 @@ import { AuthenticationService } from '../services'
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService,
-    private _activatedRoute: ActivatedRoute
-  ) {}
+  constructor(private router: Router, private authenticationService: AuthenticationService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.authenticationService.currentUserValue
@@ -23,7 +19,7 @@ export class AuthGuard implements CanActivate {
       return true
     }
 
-    this.router.navigate(['login'], { relativeTo: this._activatedRoute.parent })
+    this.router.navigate(['/v1/login'])
     return false
   }
 }

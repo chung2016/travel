@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     private alertService: AlertService
   ) {
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/'])
+      this.router.navigate(['/v1'])
     }
   }
 
@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         () => {
           this.alertService.success('Registration successful', true)
-          this.router.navigate(['/login'])
+          this.router.navigate(['/v1/login'])
         },
         (error) => {
           this.alertService.error(error)

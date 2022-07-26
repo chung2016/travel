@@ -15,7 +15,7 @@
         <h4>Username: {{ profile.username }}</h4>
         <h4>Gender: {{ profile.gender }}</h4>
         <a
-          [routerLink]="['setting']"
+          [routerLink]="['/v1/setting']"
           [hidden]="!isCurrentUser"
           class="btn btn-sm btn-outline-secondary action-btn"
         >
@@ -35,7 +35,7 @@
                   class="nav-link"
                   routerLinkActive="active"
                   [routerLinkActiveOptions]="{ exact: true }"
-                  [routerLink]="['profile', profile.id]"
+                  [routerLink]="['/v1/profile', profile.id]"
                 >
                   My Place
                 </a>
