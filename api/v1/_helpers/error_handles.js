@@ -1,5 +1,5 @@
 function errorHandlers(err, req, res, next) {
-  console.error(error.stack)
+  console.error(err.stack)
   if (typeof err === 'string') {
     // custom application error
     return res.status(400).json({ message: err })
