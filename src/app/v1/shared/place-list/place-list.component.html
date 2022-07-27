@@ -1,40 +1,50 @@
-<div class="row" *ngFor="let row of places$ | async">
-  <div class="col-md-4 col-xs-12" *ngFor="let place of row">
-    <div class="card">
-      <ng-container *ngIf="place.photo; else elseTemplate">
-        <img [src]="place.photo" alt="" class="place-pre-photo" />
-      </ng-container>
-      <ng-template #elseTemplate>
-        <span class="place-pre-photo">No photo</span>
-      </ng-template>
-      <div class="card-body">
-        <div>
-          <a class="author" [routerLink]="['/v1/profile', place.author.id]" *ngIf="place.author">
-            <img
-              class="place-info-image"
-              [src]="
-                place.author.image ? place.author.image : '../../assets/images/default-profile.png'
-              "
-              alt="User image"
-            />
-            &nbsp;<span>{{ place.author.username }}</span>
-          </a>
-        </div>
-        <h5 class="card-title">{{ place.name }}</h5>
-        <p class="card-text">Location: {{ place.location }}</p>
-        <span class="date"> Publish At: {{ place.createdAt | date: 'longDate' }} </span>
-        <div>
-          <a
-            [routerLink]="['/v1/place', place.id]"
-            class="preview-link row btn btn-primary"
-            [textContent]="'Read more...'"
-          ></a>
+<ng-container *ngIf="places$ | async as placeState">
+  <ng-container *ngIf="placeState.value">
+    <div class="row" *ngFor="let row of placeState.value">
+      <div class="col-md-4 col-xs-12" *ngFor="let place of row">
+        <div class="card">
+          <ng-container *ngIf="place.photo; else elseTemplate">
+            <img [src]="place.photo" alt="" class="place-pre-photo" />
+          </ng-container>
+          <ng-template #elseTemplate>
+            <span class="place-pre-photo">No photo</span>
+          </ng-template>
+          <div class="card-body">
+            <div>
+              <a
+                class="author"
+                [routerLink]="['/v1/profile', place.author.id]"
+                *ngIf="place.author"
+              >
+                <img
+                  class="place-info-image"
+                  [src]="
+                    place.author.image
+                      ? place.author.image
+                      : '../../assets/images/default-profile.png'
+                  "
+                  alt="User image"
+                />
+                &nbsp;<span>{{ place.author.username }}</span>
+              </a>
+            </div>
+            <h5 class="card-title">{{ place.name }}</h5>
+            <p class="card-text">Location: {{ place.location }}</p>
+            <span class="date"> Publish At: {{ place.createdAt | date: 'longDate' }} </span>
+            <div>
+              <a
+                [routerLink]="['/v1/place', place.id]"
+                class="preview-link row btn btn-primary"
+                [textContent]="'Read more...'"
+              ></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </ng-container>
 
-<div class="app-place-preview" [hidden]="!loading">Loading places...</div>
+  <div class="app-place-preview" *ngIf="placeState.loading">Loading places...</div>
+  <div class="app-place-preview" *ngIf="!placeState.loading && placeState.value.length">No Record...</div>
+</ng-container>
 
-<!-- <div class="app-place-preview" [hidden]="loading || places.length">No Record...</div> -->
