@@ -1,0 +1,51 @@
+.card {
+  margin-bottom: 1rem;
+}
+
+.place-pre-photo {
+  background: #c7c7c7;
+  min-height: 100px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  color: #000;
+  font-size: 1rem;
+  text-align: center;
+  @media (max-width: 768px) {
+    margin-bottom: 10px;
+  }
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.place-info-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.author-name {
+  min-width: 5rem;
+}
+
+.skeleton-text {
+  height: 1rem;
+  
+}
+
+.loading {
+  background: #eee;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}

@@ -1,0 +1,36 @@
+<div class="card">
+  <ng-container *ngIf="place.photo; else elseTemplate">
+    <img [src]="place.photo" alt="" class="place-pre-photo" />
+  </ng-container>
+  <ng-template #elseTemplate>
+    <span class="place-pre-photo">No photo</span>
+  </ng-template>
+  <div class="card-body">
+    <div>
+      <a
+        class="author"
+        [routerLink]="['/v1/profile', place.author.id]"
+        *ngIf="place.author"
+      >
+        <img
+          class="place-info-image"
+          [src]="
+            place.author.image ? place.author.image : 'assets/images/default-profile.png'
+          "
+          alt="User image"
+        />
+        &nbsp;<span>{{ place.author.username }}</span>
+      </a>
+    </div>
+    <h5 class="card-title">{{ place.name }}</h5>
+    <p class="card-text">Location: {{ place.location }}</p>
+    <span class="date"> Publish At: {{ place.createdAt | date: 'longDate' }} </span>
+    <div>
+      <a
+        [routerLink]="['/v1/place', place.id]"
+        class="preview-link row btn btn-primary"
+        [textContent]="'Read more...'"
+      ></a>
+    </div>
+  </div>
+</div>

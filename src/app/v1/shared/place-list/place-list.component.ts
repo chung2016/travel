@@ -17,6 +17,8 @@ export class PlaceListComponent {
   author = null
   places$: Observable<Object>
 
+  skeletonSize = Array(2).fill(Array(3).fill({}))
+
   readonly reload$ = new BehaviorSubject(null)
 
   constructor(private placeService: PlaceService) {
@@ -25,23 +27,24 @@ export class PlaceListComponent {
         const request = this.author
           ? this.placeService.getByUserId(this.author)
           : this.placeService.getAll()
-        return request
-      }),
-      map((val: []) => ({
-        loading: false,
-        value: val.reduce((acc, curr, index) => {
-          if (index % 3 === 0) acc.push([])
-          acc[acc.length - 1].push(curr)
-          return acc
-        }, []),
-      })),
-      catchError((error) => {
-        return of({
-          loading: false,
-          error,
-        })
-      }),
-      startWith({ loading: true })
+        return request.pipe(
+          map((val: []) => ({
+            loading: false,
+            value: val.reduce((acc, curr, index) => {
+              if (index % 3 === 0) acc.push([])
+              acc[acc.length - 1].push(curr)
+              return acc
+            }, []),
+          })),
+          catchError((error) => {
+            return of({
+              loading: false,
+              error,
+            })
+          }),
+          startWith({ loading: true })
+        )
+      })
     )
   }
 }
