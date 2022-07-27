@@ -9,7 +9,7 @@ async function randomFace(req, res, next) {
     const { gender: reqGender = 'male' } = req.query
     const gender = ['male', 'female'].includes(reqGender) ? reqGender : 'male'
     const response = await fetch(
-      `https://api.generated.photos/api/v1/faces?per_page=1&gender=${gender}&order_by=random`,
+      `https://api.generated.photos/api/v1/faces?per_page=1&gender=${gender}&order_by=random&ethnicity=white`,
       {
         method: 'GET',
         headers: {
