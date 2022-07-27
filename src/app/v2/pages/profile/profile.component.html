@@ -1,5 +1,5 @@
 <h1>Profile</h1>
-<dl>
+<dl *ngIf="user$ | async as user">
   <dt>email</dt>
   <dd>{{ user.email }}</dd>
   <dt>username</dt>

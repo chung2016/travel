@@ -9,16 +9,11 @@ import { AuthService } from '../../services/auth.service'
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  loggedIn = false
-  logoutForm = new FormGroup({})
+  loggedIn$ = this.authService.onLoggedIn()
 
   constructor(private router: Router, private authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.authService.onLoggedIn().subscribe((loggedIn) => {
-      this.loggedIn = loggedIn
-    })
-  }
+  ngOnInit(): void {}
 
   logout() {
     this.authService.logout().subscribe(() => {

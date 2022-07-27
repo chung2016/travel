@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { map } from 'rxjs/operators'
 import { AuthService } from '../../services/auth.service'
 
 @Component({
@@ -7,17 +8,10 @@ import { AuthService } from '../../services/auth.service'
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user: any = {};
+  user$
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.me()
-  }
-
-  private me() {
-    this.authService.me().subscribe((data: any) => {
-      console.log(data)
-      this.user = data.user;
-    }, console.error)
+    this.user$ = this.authService.me().pipe(map(({ user }: any) => user))
   }
 }
