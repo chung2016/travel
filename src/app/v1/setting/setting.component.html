@@ -3,11 +3,13 @@
     <div class="col-md-6 offset-md-3 col-xs-12">
       <h2>Setting</h2>
       <div class="card">
-        <img
-          class="card-img-top user-icon"
-          [src]="f.image.value ? f.image.value : 'assets/images/default-profile.png'"
-          alt="User image"
-        />
+        <div class="user-icon">
+          <img
+            class="card-img-top"
+            [src]="f.image.value ? f.image.value : 'assets/images/default-profile.png'"
+            alt="User image"
+          />
+        </div>
         <div class="card-body">
           <form [formGroup]="settingForm" (ngSubmit)="onSubmit()">
             <input type="hidden" formControlName="image" />
