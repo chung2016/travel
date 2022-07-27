@@ -29,4 +29,5 @@ module.exports = {
   User: require('../models/user.model'),
   Place: require('../models/place.model'),
   Comment: require('../models/comment.model'),
+  Upload: require('../models/upload.model'),
 }

@@ -1,5 +1,5 @@
 const uploadService = require('../services/upload.service')
-const Upload = require('../models/upload.model')
+const { Upload } = require('../_helpers/db')
 
 module.exports = {
   getFile,

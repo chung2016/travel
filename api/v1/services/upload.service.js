@@ -1,4 +1,4 @@
-const Upload = require('../models/upload.model')
+const { Upload } = require('../_helpers/db')
 
 module.exports = {
   uploadImageToStorage,
