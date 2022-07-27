@@ -48,7 +48,7 @@
   ></div>
   <div
     class="app-place-preview"
-    *ngIf="!placeState.loading && !placeState.value.length"
+    *ngIf="!placeState.loading && !placeState.value?.length"
     [textContent]="'No Record...'"
   ></div>
 </ng-container>
