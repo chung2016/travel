@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core'
 import { AlertService, AuthenticationService, UserService } from '@v1/core/services'
 import { Validators, FormGroup, FormControl } from '@angular/forms'
 import { Router } from '@angular/router'
-import { finalize, first } from 'rxjs/operators'
+import { finalize, first, map } from 'rxjs/operators'
 import { UploadService } from '@v1/core/services/upload.service'
+import { HttpClient } from '@angular/common/http'
+import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-setting',
@@ -31,7 +33,8 @@ export class SettingComponent implements OnInit {
     private userService: UserService,
     private _router: Router,
     private authenticationService: AuthenticationService,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -45,9 +48,10 @@ export class SettingComponent implements OnInit {
   }
 
   handleFileInput(files: FileList) {
+    console.log(files)
     this.loading = true
     this.uploadService
-      .upload(files.item(0))
+      .upload(files[0])
       .pipe(finalize(() => (this.loading = false)))
       .subscribe(
         (data) => {
@@ -57,6 +61,29 @@ export class SettingComponent implements OnInit {
           this.alertService.error(err)
         }
       )
+  }
+
+  private blobToFile(theBlob: any, fileName: string): File {
+    //A Blob() is almost a File() - it's just missing the two properties below which we will add
+    theBlob.lastModifiedDate = new Date()
+    theBlob.name = fileName
+    return <File>theBlob
+  }
+
+  async randomFace() {
+    const gender = this.f.gender.value.toLowerCase()
+    this.http
+      .get(`${environment.apiUri}/random-face`, {
+        params: {
+          gender,
+        },
+      })
+      .pipe(map((val: any) => val.imageUrl))
+      .subscribe(async (data) => {
+        this.handleFileInput([
+          this.blobToFile(await (await fetch(data)).blob(), 'random-face.jpg'),
+        ] as any)
+      })
   }
 
   onSubmit() {

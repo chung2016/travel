@@ -16,6 +16,7 @@
             <div class="form-group">
               <label for="file">avatar update</label>
               <input type="file" name="file" (change)="handleFileInput($event.target.files)" />
+              <button type="button" (click)="randomFace()">get random face</button>
             </div>
             <div class="form-group">
               <label for="email">E-mail</label>
