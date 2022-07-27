@@ -1,5 +1,5 @@
 <ng-container *ngIf="places$ | async as placeState">
-  <ng-container *ngIf="placeState.value">
+  <ng-container *ngIf="placeState.value && !placeState.loaging">
     <div class="row" *ngFor="let row of placeState.value">
       <div class="col-md-4 col-xs-12" *ngFor="let place of row">
         <div class="card">
@@ -41,9 +41,14 @@
       </div>
     </div>
   </ng-container>
-
-  <div class="app-place-preview" *ngIf="placeState.loading">Loading places...</div>
-  <div class="app-place-preview" *ngIf="!placeState.loading && placeState.value.length">
-    No Record...
-  </div>
+  <div
+    class="app-place-preview"
+    *ngIf="placeState.loading"
+    [textContent]="'Loading places...'"
+  ></div>
+  <div
+    class="app-place-preview"
+    *ngIf="!placeState.loading && !placeState.value.length"
+    [textContent]="'No Record...'"
+  ></div>
 </ng-container>
