@@ -3,7 +3,10 @@ const jwt = require('../_helpers/jwt')
 const router = express.Router()
 const errorHandler = require('../_helpers/error_handles')
 
+const testingController = require('../controllers/testing.controller')
+
 router
+  .get('/random-face', testingController.randomFace)
   .use('/', jwt()) // use JWT auth to secure the api
   // api routes
   .use('/users', require('./user.router'))
