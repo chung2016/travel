@@ -2,16 +2,12 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-10 offset-md-1">
-        <div
-          class="profile-image"
-          style="background-image: url('assets/images/default-profile.png')"
-          *ngIf="!profile.image"
-        ></div>
-        <div
-          class="profile-image"
-          [ngStyle]="{ 'background-image': 'url(' + profile.image + ')' }"
-          *ngIf="profile.image"
-        ></div>
+        <div class="profile-image">
+          <img
+            [src]="profile.image ? profile.image : 'assets/images/default-profile.png'"
+            alt="avatar"
+          />
+        </div>
         <h4>Username: {{ profile.username }}</h4>
         <h4>Gender: {{ profile.gender }}</h4>
         <a

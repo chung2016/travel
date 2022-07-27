@@ -10,15 +10,8 @@
     </a>
     <img
       class="comment-author-image"
-      [src]="comment.user.image"
+      [src]="comment.user.image ? comment.user.image : 'assets/images/default-profile.png'"
       alt="User image"
-      *ngIf="comment.user.image"
-    />
-    <img
-      class="comment-author-image"
-      src="assets/images/default-profile.png"
-      alt="User image"
-      *ngIf="!comment.user.image"
     />
     <span class="date-posted">
       {{ comment.createdAt | date: 'longDate' }}

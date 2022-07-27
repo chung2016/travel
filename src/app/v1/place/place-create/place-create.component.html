@@ -11,9 +11,9 @@
             class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
           />
-          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-            <div *ngIf="f.name.errors.required">Name is required</div>
-          </div>
+          <ul *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <li *ngIf="f.name.errors.required">Name is required</li>
+          </ul>
         </div>
         <div class="form-group">
           <label for="photo">Photo</label>
@@ -22,7 +22,6 @@
             name="file"
             (change)="handleFileInput($event.target.files)"
             class="form-control-file"
-            *ngIf="!place.photo"
           />
           <img [src]="place.photo" alt="place-photo" *ngIf="place.photo" class="place-photo" />
         </div>
@@ -34,9 +33,9 @@
             class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.location.errors }"
           />
-          <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
-            <div *ngIf="f.location.errors.required">Location is required</div>
-          </div>
+          <ul *ngIf="submitted && f.location.errors" class="invalid-feedback">
+            <li *ngIf="f.location.errors.required">Location is required</li>
+          </ul>
         </div>
         <div class="form-group">
           <label for="type">Type</label>
@@ -56,7 +55,7 @@
             class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
           ></textarea>
-          <div *ngIf="submitted && f.description.errors" class="invalid-feedback"></div>
+          <ul *ngIf="submitted && f.description.errors" class="invalid-feedback"></ul>
         </div>
         <div class="form-group">
           <label for="authorComment">Comment</label>
@@ -66,7 +65,7 @@
             class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.authorComment.errors }"
           ></textarea>
-          <div *ngIf="submitted && f.authorComment.errors" class="invalid-feedback"></div>
+          <ul *ngIf="submitted && f.authorComment.errors" class="invalid-feedback"></ul>
         </div>
         <div class="form-group">
           <button [disabled]="loading" class="btn btn-primary">Create</button>

@@ -22,8 +22,8 @@
         </div>
         <div class="place-post-comment">
           <div *ngIf="!currentUser" class="comment-auth-message">
-            <a [routerLink]="['/v1/auth/login']">Login</a> or <a [routerLink]="['/v1/auth/register']">Register</a> to
-            add comments
+            <a [routerLink]="['/v1/auth/login']">Login</a> or
+            <a [routerLink]="['/v1/auth/register']">Register</a> to add comments
           </div>
           <form
             class="card comment-form"
@@ -44,15 +44,8 @@
               <span>{{ currentUser.username }}</span>
               <img
                 class="card-footer-image"
-                [src]="currentUser.image"
+                [src]="currentUser.image ? currentUser.image : 'assets/images/default-profile.png'"
                 alt="User image"
-                *ngIf="currentUser.image"
-              />
-              <img
-                class="card-footer-image"
-                src="assets/images/default-profile.png"
-                alt="User image"
-                *ngIf="!currentUser.image"
               />
               <button class="btn btn-sm btn-info" type="submit" [disabled]="commentForm.disabled">
                 Post Comment
@@ -75,38 +68,32 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="card author-content" *ngIf="place">
+        <div class="card author-content">
           <h2 class="card-header">Author</h2>
-          <div class="author-image" *ngIf="place.author">
+          <div class="author-image">
             <img
               class="card-img-top author-image"
-              [src]="place.author.image"
+              [src]="
+                place?.author?.image ? place.author.image : 'assets/images/default-profile.png'
+              "
               alt="User image"
-              *ngIf="place.author.image"
-            />
-            <img
-              class="card-img-top author-image"
-              src="assets/images/default-profile.png"
-              alt="User image"
-              *ngIf="!place.author.image"
             />
           </div>
-          <div class="card-body" *ngIf="place.author">
+          <div class="card-body">
             <h4 class="card-title">Username</h4>
-            <p class="card-text" *ngIf="!loading">{{ place.author.username }}</p>
+            <p class="card-text">{{ place?.author?.username }}</p>
             <h4 class="card-title">E-mail</h4>
-            <p class="card-text" *ngIf="!loading">{{ place.author.email }}</p>
+            <p class="card-text">{{ place?.author?.email }}</p>
             <h4 class="card-title">Gender</h4>
-            <p class="card-text" *ngIf="!loading">{{ place.author.gender }}</p>
+            <p class="card-text">{{ place?.author?.gender }}</p>
             <a
               class="btn btn-primary stretched-link"
-              [routerLink]="['/v1/profile', place.author.id]"
-              *ngIf="!loading"
+              [routerLink]="['/v1/profile', place?.author?.id]"
             >
               See Profile
             </a>
           </div>
-          <div class="card-body" *ngIf="!place.author">Author has been deleted</div>
+          <div class="card-body" *ngIf="!place?.author">Author has been deleted</div>
         </div>
       </div>
     </div>
