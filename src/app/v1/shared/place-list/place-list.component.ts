@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { catchError, map, startWith, switchMap } from 'rxjs/operators'
+import { catchError, debounceTime, finalize, map, startWith, switchMap } from 'rxjs/operators'
 import { PlaceListConfig } from '@v1/core/models'
 import { PlaceService } from '@v1/core/services'
 import { BehaviorSubject, Observable, of } from 'rxjs'
@@ -19,7 +19,7 @@ export class PlaceListComponent {
 
   skeletonSize = Array(2).fill(Array(3).fill({}))
 
-  readonly reload$ = new BehaviorSubject(null)
+  readonly reload$ = new BehaviorSubject(false)
 
   constructor(private placeService: PlaceService) {
     this.places$ = this.reload$.pipe(

@@ -1,5 +1,14 @@
-<button type="button" (click)="reload$.next(null)">reload</button>
 <ng-container *ngIf="places$ | async as placeState">
+  <div style="margin-bottom: 1rem; display: flex; justify-content: center; align-items: center">
+    <button
+      type="button"
+      (click)="reload$.next(true)"
+      [disabled]="placeState.loading"
+      class="btn btn-success"
+    >
+      reload
+    </button>
+  </div>
   <ng-container *ngIf="placeState.value && !placeState.loaging">
     <div class="row" *ngFor="let row of placeState.value">
       <div class="col-md-4 col-xs-12" *ngFor="let place of row">
