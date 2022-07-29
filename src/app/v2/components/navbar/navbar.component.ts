@@ -16,11 +16,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {}
 
   logout() {
-    this.authService.logout().subscribe(() => {
-      localStorage.removeItem('refreshToken')
-      localStorage.removeItem('accessToken')
-      this.authService.setLoggedIn(false)
-      this.router.navigate(['/v2'])
-    })
+    this.authService.logout().subscribe()
+    localStorage.removeItem('refreshToken')
+    localStorage.removeItem('accessToken')
+    this.authService.setLoggedIn(false)
+    this.router.navigate(['/v2'])
   }
 }
