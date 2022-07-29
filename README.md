@@ -5,6 +5,13 @@
 - [v1 doc](/api/v1/README.md)
 - [v2 doc](/api/v2/README.md)
 
+### common setup
+
+- Clone this repo
+- `npm install` to install all required dependencies
+- `cp .env.example .env` and set variable
+- `node app.js` to start the local server
+
 ## Features
 
 - User Login

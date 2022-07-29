@@ -23,14 +23,7 @@
 - [multer](https://github.com/expressjs/multer)
 - [path](https://github.com/jinder/path)
 
-### common setup
-
-- Clone this repo
-- `npm install` to install all required dependencies
-- `cp .env.example .env` and set MongoDB
-- `node app.js` to start the local server
-
-This project creates the following API:
+### This project creates the following API
 
 - all request body must use json
 
