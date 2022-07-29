@@ -14,6 +14,7 @@ router
   .use('/places', require('./place.router'))
   .use('/comments', require('./comment.router'))
   .use('/upload', require('./upload.router'))
+  .use((req, res, next) => res.status(404).json({ message: 'Sorry cant find that!' }))
   .use(errorHandler) // global error handler
 
 module.exports = router
