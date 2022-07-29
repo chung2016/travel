@@ -1,4 +1,4 @@
-const { User } = require('../db/models')
+const { User, Post, Oauth } = require('../db/models')
 
 module.exports = {
   addUser,
@@ -31,6 +31,19 @@ async function findById(userId) {
     where: {
       id: userId,
     },
+    include: [
+      {
+        model: Post,
+        as: 'posts'
+      },
+      {
+        model: Oauth,
+        as: 'oauths',
+        where: {
+          revoked: false
+        }
+      }
+    ]
   })
   return user
 }

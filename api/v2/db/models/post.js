@@ -1,7 +1,7 @@
 'use strict'
 const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class Oauth extends Model {
+  class Post extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,18 +12,23 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.User, { foreignKey: 'userId', as: 'user' })
     }
   }
-  Oauth.init(
+  Post.init(
     {
-      refreshToken: DataTypes.STRING,
-      accessToken: DataTypes.STRING,
-      userId: DataTypes.INTEGER,
-      revoked: DataTypes.BOOLEAN,
+      title: {
+        type: DataTypes.STRING,
+      },
+      content: {
+        type: DataTypes.TEXT,
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+      },
     },
     {
       sequelize,
-      modelName: 'Oauth',
+      modelName: 'Post',
       underscored: true,
     }
   )
-  return Oauth
+  return Post
 }
