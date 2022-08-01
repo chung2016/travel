@@ -7,6 +7,7 @@ const testingController = require('../controllers/testing.controller')
 
 router
   .get('/random-face', testingController.randomFace)
+  .get('/remove-unused', testingController.removeUnused)
   .use('/', jwt()) // use JWT auth to secure the api
   // api routes
   .use('/users', require('./user.router'))
