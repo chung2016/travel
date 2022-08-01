@@ -36,9 +36,7 @@ async function removeUnused() {
   ]
   const unUsedUploads = uploads.filter((val) => !usedUploads.includes(val))
 
-  await Upload.find({ filename: { $in: unUsedUploads } })
-    .remove()
-    .exec()
+  await Upload.deleteMany({ filename: { $in: unUsedUploads } })
   return {
     uploads,
     usedUploads,
