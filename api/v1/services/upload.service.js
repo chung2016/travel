@@ -6,7 +6,7 @@ module.exports = {
   uploadImageToStorage,
 }
 
-const UPLOAD_MAX_SIZE = process.env.UPLOAD_MAX_SIZE || 100
+const UPLOAD_MAX_SIZE = +process.env.UPLOAD_MAX_SIZE || 100
 
 async function uploadImageToStorage(file) {
   if (!file) throw 'No image file'
