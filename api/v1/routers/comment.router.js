@@ -4,7 +4,7 @@ const commentController = require('../controllers/comment.controller')
 
 router
   .post('/', commentController.create)
-  .delete('/:id', commentController.delete)
+  .delete('/:id', commentController.destroy)
   .get('/place/:placeid', commentController.getByPlaceId)
 
 module.exports = router

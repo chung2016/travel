@@ -5,7 +5,7 @@ module.exports = {
   get,
   create,
   update,
-  delete: destroy,
+  destroy,
 }
 
 async function getAll(req, res, next) {
@@ -52,7 +52,7 @@ async function update(req, res, next) {
 async function destroy(req, res, next) {
   try {
     const { id } = req.params
-    await postService.delete(id)
+    await postService.destroy(id)
     return res.status(204).json()
   } catch (error) {
     next(error)

@@ -5,7 +5,7 @@ module.exports = {
   get,
   create,
   update,
-  delete: destroy,
+  destroy,
 }
 
 async function getAll() {

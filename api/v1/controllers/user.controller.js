@@ -7,7 +7,7 @@ module.exports = {
   getCurrent,
   getById,
   update,
-  delete: destroy,
+  destroy,
 }
 
 async function authenticate(req, res, next) {
@@ -69,7 +69,7 @@ async function update(req, res, next) {
 
 async function destroy(req, res, next) {
   try {
-    await userService.delete(req.params.id)
+    await userService.destroy(req.params.id)
     return res.json({})
   } catch (err) {
     return next(err)

@@ -10,6 +10,6 @@ router
   .get('/:id', postController.get)
   .post('/', authUser, validate(postValidator.create), postController.create)
   .put('/:id', authUser, validate(postValidator.update), postController.update)
-  .delete('/:id', authUser, postController.delete)
+  .delete('/:id', authUser, postController.destroy)
 
 module.exports = router

@@ -8,6 +8,6 @@ router
   .get('/user/:userid', placeController.getAllByUserId)
   .post('/', placeController.create)
   .put('/:id', placeController.update)
-  .delete('/:id', placeController.delete)
+  .delete('/:id', placeController.destroy)
 
 module.exports = router

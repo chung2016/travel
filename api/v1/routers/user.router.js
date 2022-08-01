@@ -9,6 +9,6 @@ router
   .get('/current', userController.getCurrent)
   .get('/:id', userController.getById)
   .put('/:id', userController.update)
-  .delete('/:id', userController.delete)
+  .delete('/:id', userController.destroy)
 
 module.exports = router

@@ -10,7 +10,7 @@ module.exports = {
   getById,
   create,
   update,
-  delete: destroy,
+  destroy,
 }
 
 async function authenticate(username, password) {

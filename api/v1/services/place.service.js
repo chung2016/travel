@@ -7,7 +7,7 @@ module.exports = {
   getById,
   create,
   update,
-  delete: destroy,
+  destroy,
   getAllByUserId,
 }
 

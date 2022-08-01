@@ -8,7 +8,6 @@ function jwt() {
   return expressJwt({ secret, isRevoked }).unless({
     path: [
       // public routes that don't require authentication
-      '/api/v1/third/webcams',
       '/api/v1/users/authenticate',
       '/api/v1/users/register',
       { url: /\/api\/v1\/profile\/*/, methods: ['GET'] },

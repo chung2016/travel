@@ -4,7 +4,7 @@ const Comment = db.Comment
 module.exports = {
   getAll,
   create,
-  delete: destroy,
+  destroy,
   getByPlaceId,
 }
 
