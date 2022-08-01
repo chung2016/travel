@@ -6,7 +6,7 @@ module.exports = {
   uploadImageToStorage,
 }
 
-const MAX_SIZE = 100
+const UPLOAD_MAX_SIZE = process.env.UPLOAD_MAX_SIZE || 100
 
 async function uploadImageToStorage(file) {
   if (!file) throw 'No image file'
@@ -29,10 +29,10 @@ async function uploadImageToStorage(file) {
 async function _resizeImage(filebuffer) {
   const metadata = await sharp(filebuffer).metadata()
 
-  if (metadata.width > MAX_SIZE) {
-    filebuffer = await sharp(filebuffer).resize({ width: MAX_SIZE }).toBuffer()
-  } else if (metadata.height > MAX_SIZE) {
-    filebuffer = await sharp(filebuffer).resize({ height: MAX_SIZE }).toBuffer()
+  if (metadata.width > UPLOAD_MAX_SIZE) {
+    filebuffer = await sharp(filebuffer).resize({ width: UPLOAD_MAX_SIZE }).toBuffer()
+  } else if (metadata.height > UPLOAD_MAX_SIZE) {
+    filebuffer = await sharp(filebuffer).resize({ height: UPLOAD_MAX_SIZE }).toBuffer()
   }
 
   return filebuffer
