@@ -1,4 +1,4 @@
-const { Upload } = require('../_helpers/db')
+const { Upload } = require('../../mongoose')
 
 module.exports = {
   uploadImageToStorage,

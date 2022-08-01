@@ -3,7 +3,7 @@ const accepted_extensions = ['jpg', 'png', 'gif']
 
 function validate_format(req, res, next) {
   if (req.file) {
-    let mime = fileType(req.file.buffer)
+    const mime = fileType(req.file.buffer)
 
     if (!mime || !accepted_extensions.includes(mime.ext))
       return next(

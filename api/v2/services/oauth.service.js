@@ -1,4 +1,4 @@
-const { Oauth } = require('../db/models')
+const { Oauth } = require('../../sequelize/models')
 const jwt = require('jsonwebtoken')
 
 const REFRESH_TOKEN_EXPIRES_IN = 60 * 60 * 24

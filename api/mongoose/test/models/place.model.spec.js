@@ -1,11 +1,11 @@
-const expect = require('chai').expect
+const { expect } = require('chai')
 const sinon = require('sinon')
 
 const Place = require('../../models/place.model')
 const User = require('../../models/user.model')
 
 describe('Place Model Testing', function () {
-  let stubUser = new User()
+  const stubUser = new User()
   before(function () {
     sinon.stub(stubUser, 'save')
   })

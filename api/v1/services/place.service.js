@@ -1,4 +1,4 @@
-const db = require('../_helpers/db')
+const db = require('../../mongoose')
 const Place = db.Place
 const Comment = db.Comment
 
@@ -12,7 +12,7 @@ module.exports = {
 }
 
 async function getAll() {
-  let places = await Place.find()
+  const places = await Place.find()
     .populate({ path: 'author', select: '-password -createdAt -updatedAt' })
     .sort({ createdAt: 'descending' })
   return places
@@ -45,7 +45,7 @@ async function _delete(id) {
 }
 
 async function getAllByUserId(userid) {
-  let places = await Place.where('author', userid)
+  const places = await Place.where('author', userid)
     .populate({ path: 'author', select: '-password -createdAt -updatedAt' })
     .sort({ createdAt: 'descending' })
   return places

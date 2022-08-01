@@ -1,4 +1,4 @@
-const { Post } = require('../db/models')
+const { Post } = require('../../sequelize/models')
 
 module.exports = {
   getAll,

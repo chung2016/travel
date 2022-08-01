@@ -1,4 +1,4 @@
-const { User, Post, Oauth } = require('../db/models')
+const { User, Post, Oauth } = require('../../sequelize/models')
 
 module.exports = {
   addUser,

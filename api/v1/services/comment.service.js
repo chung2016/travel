@@ -1,4 +1,4 @@
-const db = require('../_helpers/db')
+const db = require('../../mongoose')
 const Comment = db.Comment
 
 module.exports = {

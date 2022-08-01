@@ -54,7 +54,7 @@ schema.pre('save', function (next) {
 })
 
 schema.methods.comparePassword = function (candidatePassword) {
-  let result = bcrypt.compareSync(candidatePassword, this.password)
+  const result = bcrypt.compareSync(candidatePassword, this.password)
   return result
 }
 

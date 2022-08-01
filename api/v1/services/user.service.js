@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const db = require('../_helpers/db')
+const db = require('../../mongoose')
 const User = db.User
 const Comment = db.Comment
 const Place = db.Place

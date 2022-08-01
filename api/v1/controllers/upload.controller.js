@@ -1,5 +1,5 @@
 const uploadService = require('../services/upload.service')
-const { Upload } = require('../_helpers/db')
+const { Upload } = require('../../mongoose')
 
 module.exports = {
   getFile,

@@ -8,7 +8,7 @@
 
 ### Automated testing
 
-- `npm test` to run automated testing
+- `mocha ./api/mongoose/test --recursive` to run automated testing
 
 ### Web API Dependencies
 

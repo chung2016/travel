@@ -1,4 +1,4 @@
-const db = require('../_helpers/db')
+const db = require('../../mongoose')
 const { User, Place, Upload } = db
 const fetch = require('node-fetch')
 
