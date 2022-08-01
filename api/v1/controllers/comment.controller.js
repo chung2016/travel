@@ -3,7 +3,7 @@ const commentService = require('../services/comment.service')
 module.exports = {
   create,
   update,
-  delete: _delete,
+  delete: destroy,
   getByPlaceId,
 }
 
@@ -25,7 +25,7 @@ async function update(req, res, next) {
   }
 }
 
-async function _delete(req, res, next) {
+async function destroy(req, res, next) {
   try {
     await commentService.delete(req.params.id)
     return res.json({})

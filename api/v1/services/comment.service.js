@@ -4,7 +4,7 @@ const Comment = db.Comment
 module.exports = {
   getAll,
   create,
-  delete: _delete,
+  delete: destroy,
   getByPlaceId,
 }
 
@@ -18,7 +18,7 @@ async function create(param) {
   return await getById(comment.id)
 }
 
-async function _delete(id) {
+async function destroy(id) {
   await Comment.findOneAndDelete(id)
 }
 

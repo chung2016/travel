@@ -5,7 +5,7 @@ module.exports = {
   getById,
   create,
   update,
-  delete: _delete,
+  delete: destroy,
   getAllByUserId,
 }
 
@@ -45,7 +45,7 @@ async function update(req, res, next) {
   }
 }
 
-async function _delete(req, res, next) {
+async function destroy(req, res, next) {
   try {
     await placeService.delete(req.params.id)
     return res.json({})

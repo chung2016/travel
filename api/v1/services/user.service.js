@@ -10,7 +10,7 @@ module.exports = {
   getById,
   create,
   update,
-  delete: _delete,
+  delete: destroy,
 }
 
 async function authenticate(username, password) {
@@ -75,7 +75,7 @@ async function update(id, userParam) {
   return user
 }
 
-async function _delete(id) {
+async function destroy(id) {
   Comment.find({ user: id }).remove().exec()
   Place.find({ author: id }).remove().exec()
   await User.findByIdAndRemove(id)

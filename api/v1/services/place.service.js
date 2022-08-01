@@ -7,7 +7,7 @@ module.exports = {
   getById,
   create,
   update,
-  delete: _delete,
+  delete: destroy,
   getAllByUserId,
 }
 
@@ -39,7 +39,7 @@ async function update(id, param) {
   return place
 }
 
-async function _delete(id) {
+async function destroy(id) {
   Comment.find({ place: id }).remove().exec()
   await Place.findByIdAndRemove(id)
 }

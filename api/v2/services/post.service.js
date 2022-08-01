@@ -5,7 +5,7 @@ module.exports = {
   get,
   create,
   update,
-  delete: _delete,
+  delete: destroy,
 }
 
 async function getAll() {
@@ -40,7 +40,7 @@ async function update(id, { title, content }) {
   return post
 }
 
-async function _delete(id) {
+async function destroy(id) {
   const post = await get(id)
   await post.destroy()
   return
